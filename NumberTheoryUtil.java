@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Waleed Mortaja, Mahmoud El-Shekh Kalil
+ * Copyright (C) 2017 Waleed Mortaja, Mahmoud El-Shekh Khalil
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Waleed Mortaja, contact Email :
  * <a href="mailto:waleed.mortaja@gmail.com">waleed.mortaja@gmail.com</a>
- * @author Mahmoud El-Shekh Kalil
+ * @author Mahmoud El-Shekh Khalil
  */
 public final class NumberTheoryUtil {
 
