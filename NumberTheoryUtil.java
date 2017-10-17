@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Waleed Mortaja, Mahmoud El-Shekh Kalil
+ * Copyright (C) 2017 Waleed Mortaja, Mahmoud El-Shekh Khalil
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 import java.util.ArrayList;
 
 /**
+ * Implementation for some methods used in Elementary Number Theory.
  *
  * @author Waleed Mortaja, contact Email :
  * <a href="mailto:waleed.mortaja@gmail.com">waleed.mortaja@gmail.com</a>
@@ -25,12 +26,16 @@ import java.util.ArrayList;
 public final class NumberTheoryUtil {
 
     /**
-     * //Enter positive number to check if its prime or not//
-     *
-     * This method for numbers less than 9223372036854775807 (long max value)
-     *
-     * The method chaeck if the entered number divisble by any number less than
-     * the entered number root
+     * Don't let anyone instantiate this class.
+     */
+    private NumberTheoryUtil() {
+    }
+    
+    
+    /**
+     * Enter whether a number is prime or not. Check if the entered number
+     * divisble by any number less than or equal to the square root of the
+     * entered number
      *
      * @param number The number to be checked
      * @return true if number is prime
@@ -50,20 +55,25 @@ public final class NumberTheoryUtil {
     }
 
     /**
+     * Calculate the gcd (Greates Common Divisor) of two numbers. Find gcd using
+     * Euclidean Algorithm
      *
-     * @param a
-     * @param b
-     * @return
-     * @throws IllegalArgumentException
+     * @param a The first number.
+     * @param b The second number.
+     * @return the gcd of the two numbers
+     * @throws IllegalArgumentException when both a & b equals zero
      */
     public static long gcd(long a, long b) throws IllegalArgumentException {
-        if (a == 0) {
+        if (a == 0 && b == 0) {
+            throw new IllegalArgumentException("Undefined value for gcd(0,0)");
+        } else if (a == 0) {
             return Math.abs(b);
         } else if (b == 0) {
             return Math.abs(a);
-        } else if (a == 0 && b == 0) {
-            throw new IllegalArgumentException("Undefined value for gcd(0,0)");
+        } else if (a == b) {
+            return Math.abs(a); //any number of them. They are equal any way
         }
+        
         a = Math.abs(a);
         //نتأكد إذا كان  يساوي أقل قيمة
         b = Math.abs(b);
@@ -86,6 +96,13 @@ public final class NumberTheoryUtil {
         return gcd(min, max % min);
     }
 
+    /**
+     * Calculate the LCM (Least Common Multiple) of two numbers
+     *
+     * @param a The first number.
+     * @param b The second number.
+     * @return the LCM of the two numbers
+     */
     public static long lcm(long a, long b) {
         return Math.abs(a * b) / gcd(a, b);
     }
