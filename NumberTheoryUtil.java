@@ -14,14 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import java.util.ArrayList;
 
 /**
  *
  * @author Waleed Mortaja, contact Email :
  * <a href="mailto:waleed.mortaja@gmail.com">waleed.mortaja@gmail.com</a>
- * @author Mahmoud El-Shekh Kalil
+ * @author Mahmoud El-Shekh Khalil
  */
 public final class NumberTheoryUtil {
 
@@ -66,7 +65,9 @@ public final class NumberTheoryUtil {
             throw new IllegalArgumentException("Undefined value for gcd(0,0)");
         }
         a = Math.abs(a);
+        //نتأكد إذا كان  يساوي أقل قيمة
         b = Math.abs(b);
+
         long min;
         long max;
         if (a > b) {
@@ -107,7 +108,6 @@ public final class NumberTheoryUtil {
         if (a == b) {
             return new long[]{a, 1, b, 0};
         }
-
         double ratio = (double) a / b;
         long quotient;
 
@@ -116,7 +116,7 @@ public final class NumberTheoryUtil {
         } else {
             quotient = (long) Math.ceil(ratio);
         }
-        
+
         long reminder = Math.round((ratio - quotient) * b);
         return new long[]{a, quotient, b, reminder};
     }
@@ -144,8 +144,20 @@ public final class NumberTheoryUtil {
             lines.add(arrayListline);
             a = arrayListline[2]; //put one of the varibales (a,b) to the minmum of a,b
             b = arrayListline[3]; // and the other variable to the remainder
+            if (a == 0 || b == 0) {
+                break;
+            }
         } while (true);
+        if (lines.size() == 1) {
+            arrayListline = lines.get(0);
+            if (arrayListline[3] == 0) {
+                return new long[]{arrayListline[2], 1, arrayListline[2], 0L, arrayListline[0]};
+            } else {
+                long[] result = getRemainder(arrayListline);
+                return new long[]{result[0], 1, result[1], result[2], result[3]};
 
+            }
+        }
         long bracketMultiple; // the quetionet of the factor
         long outOfBracketMultiple = 1;
 
