@@ -1,5 +1,3 @@
-package number.theory;
-
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud El-Shekh Kalil
  *
