@@ -1,3 +1,5 @@
+package newpackage;
+
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
  *
@@ -32,61 +34,85 @@ public final class NumberTheoryUtil {
     private NumberTheoryUtil() {
     }
 
-//    public static ArrayList<Long> divisors(long number) throws IllegalArgumentException {
-//        if (number == 0) {
-//            throw new IllegalArgumentException("Can't define the divisors for zero");
-//        }
-//        ArrayList<Long> result = new ArrayList<>();
-//        if (number == 1 || number == -1) { //add 1 or -1 once only
-//            result.add(number);
-//            if (number < 0) {
-//                result.add(-number);
-//            }
-//            return result;
-//        }
-//        for (long i = 1; i <= Math.sqrt(Math.abs(number)); i++) {
-//            if (number % i == 0) {
-//                result.add(i);
-//            }
-//        }
-//        for (int i = result.size() - 1; i >= 0; i--) {
-//            if (number / result.get(i) != result.get(i)) { //check if the number is the square root of the number, then dont add number/sqrt(number) again
-//                result.add(Math.abs(number / result.get(i)));
-//            }
-//        }
-//
-//        //if the number is negative then add the negative divisors to the last
-//        int resultLengthBeforLoop = result.size();
-//        for (int i = 0; i < resultLengthBeforLoop; i++) {
-//            result.add(-result.get(i));
-//        }
-//
-//        return result;
-//    }
-//    public static ArrayList<Long> primeDivisors(long number) {
-//        if (number == 0) {
-//            throw new IllegalArgumentException("Can't define the primeDivisors for zero");
-//        }
-//        ArrayList<Long> result = new ArrayList<>();
-//        if (Math.abs(number) < 2) {
-//            return result;
-//        }
-//        for (long i = 2; i <= Math.sqrt(Math.abs(number)); i++) {
-//            if (number % i == 0) { //TODO might combine the conditions in one "if" if it does not optimize
-//                if (isPrime(i)) {
-//                    result.add(i);
-//                }
-//            }
-//        }
-//        if (result.isEmpty()) {
-//            result.add(number);
-//        }
-//        return result;
-//    }
+    public static ArrayList<Long> divisors(long number) throws IllegalArgumentException {
+        if (number == 0) {
+            throw new IllegalArgumentException("Can't define the divisors for zero");
+        }
+        ArrayList<Long> result = new ArrayList<>();
+        /* if the number is 1 then add 1 once only
+        or if it is -1,then add 1 and -1 once only */
+        if (number == 1 || number == -1) {
+            result.add(number);
+            if (number < 0) { //number ==-1
+                //add the positive +1 at the first of the result
+                result.add(0, -number);
+            }
+            return result;
+        }
+        for (long i = 1; i <= Math.sqrt(Math.abs(number)); i++) {
+            if (number % i == 0) {
+                result.add(i);
+            }
+        }
+        for (int i = result.size() - 1; i >= 0; i--) {
+            /* check if the result.get(i) is the square root of the number, then 
+            dont add sqrt(number) again,
+            else [if(number / result.get(i) != result.get(i))]
+            add the number because it is NOT the square root */
+            if (number / result.get(i) != result.get(i)) {
+                result.add(Math.abs(number / result.get(i)));
+            }
+        }
+        //if the number is negative then append the negative divisors to the result
+        if (number < 0) {
+            int resultLengthBeforLoop = result.size();
+            for (int i = 0; i < resultLengthBeforLoop; i++) {
+                result.add(-result.get(i));
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Long> primeDivisors(long number) {
+        // if the number is zero, then divisors method will throw the exception
+        ArrayList<Long> divisors = divisors(Math.abs(number));
+        ArrayList<Long> result = new ArrayList<>();
+        if (Math.abs(number) < 2) {
+            return result;
+        }
+        for (int i = 0; i < divisors.size(); i++) {
+            if (isPrime(divisors.get(i))) {
+                result.add(divisors.get(i));
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<String> primeFacorization(long number) {
+        ArrayList<String> result = new ArrayList<>();
+        /* no need for Math.abs(number) because primeDivisors method do it,
+        and returns the primes which are always positive */
+        ArrayList<Long> primeDivisors = primeDivisors(number);
+        for (int i = 0; i < primeDivisors.size(); i++) {
+            long tempNumber = number; //so we can change "tempNumber" instead of "number"
+            int power = 0;
+            while (tempNumber % primeDivisors.get(i) == 0) {
+                power++;
+                tempNumber /= primeDivisors.get(i);
+            }
+            if (power == 1) {
+                result.add(primeDivisors.get(i).toString());
+            } else {
+                result.add(primeDivisors.get(i) + "^" + power);
+            }
+        }
+        return result;
+    }
+
     /**
-     * Enter whether a number is prime or not. Check if the entered number
-     * divisble by any number less than or equal to the square root of the
-     * entered number
+     * Check whether a number is prime or not. done by checking if the entered
+     * number divisble by any number less than or equal to the square root of
+     * the entered number
      *
      * @param number The number to be checked
      * @return true if number is prime
@@ -126,7 +152,6 @@ public final class NumberTheoryUtil {
         }
 
         a = Math.abs(a);
-        //نتأكد إذا كان  يساوي أقل قيمة
         b = Math.abs(b);
 
         long min;
@@ -189,7 +214,7 @@ public final class NumberTheoryUtil {
         return new long[]{a, quotient, b, reminder};
     }
 
-    public static long[] Remainder(long[] line) throws IllegalArgumentException {
+    public static long[] remainder(long[] line) throws IllegalArgumentException {
         //swap the elements of the line as remainder  = multiple - quotient*factor
         // m = q * f + r
         // r = m - q * f
@@ -215,8 +240,13 @@ public final class NumberTheoryUtil {
                 break;
             }
             lines.add(arrayListline);
-            a = arrayListline[2]; //put one of the varibales (a,b) to the minmum of a,b
-            b = arrayListline[3]; // and the other variable to the remainder
+            /* put one of the varibales (a,b) to the minmum of a,b (we selected a)
+                arrayListline is written as m = q * f + r,
+                then arrayListline[2] is minimum of a,b
+                and the other variable to the remainder,
+                then get the UniqueRepresntation of the new a,b in the next loop */
+            a = arrayListline[2];
+            b = arrayListline[3];
             if (a == 0 || b == 0) {
                 break;
             }
@@ -226,7 +256,7 @@ public final class NumberTheoryUtil {
             if (arrayListline[3] == 0) {
                 return new long[]{arrayListline[2], 1, arrayListline[2], 0L, arrayListline[0]};
             } else {
-                long[] result = Remainder(arrayListline);
+                long[] result = remainder(arrayListline);
                 return new long[]{result[0], 1, result[1], result[2], result[3]};
 
             }
@@ -234,9 +264,9 @@ public final class NumberTheoryUtil {
         long bracketMultiple; // the quetionet of the factor
         long outOfBracketMultiple = 1;
 
-        long[] currentLine = Remainder(lines.get(lines.size() - 1)); // the line being proccessed resulting the required final line (result)
+        long[] currentLine = remainder(lines.get(lines.size() - 1)); // the line being proccessed resulting the required final line (result)
         for (int i = lines.size() - 1; i > 0; i--) { //loop from the before the last equation to the second equation (first equation is calculated in the second equation processing)
-            long[] theComingLine = Remainder(lines.get(i - 1));
+            long[] theComingLine = remainder(lines.get(i - 1));
 
             bracketMultiple = currentLine[2];
             currentLine[2] = outOfBracketMultiple + (bracketMultiple * theComingLine[2]);
@@ -261,13 +291,15 @@ public final class NumberTheoryUtil {
             throw new IllegalArgumentException("No, solution, the gcd does not divide the expression");
         }
         long multiplyFactor = expression / gcdLinearCombination[0];
-        for (int i = 1; i < gcdLinearCombination.length; i+=2) { //multiply x0,y0
-            gcdLinearCombination[i] *= multiplyFactor;
-        }
+
+        //multiply x0,y0 by multiplyFactor
+        gcdLinearCombination[1] *= multiplyFactor;
+        gcdLinearCombination[3] *= multiplyFactor;
+
         result[0] = gcdLinearCombination[1]; //x0
-        result[1] = yCoefficient/gcdLinearCombination[0]; // b/d
+        result[1] = yCoefficient / gcdLinearCombination[0]; // b/d
         result[2] = gcdLinearCombination[3]; //y0
-        result[3] = - xCoefficient/gcdLinearCombination[0]; // a/d
+        result[3] = -xCoefficient / gcdLinearCombination[0]; // a/d
         return result;
     }
 }
