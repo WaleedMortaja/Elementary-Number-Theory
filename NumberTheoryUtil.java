@@ -1,4 +1,10 @@
-package newpackage;
+package number.theory;
+// Biginteger over load;
+// tow char tau ='\u03C4';
+// sigma '\u03c3'
+// chinese
+// linear congurent
+// linear congroante; a(x) b n [less than n congroantes]
 
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
@@ -17,6 +23,7 @@ package newpackage;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation for some methods used in Elementary Number Theory.
@@ -32,6 +39,12 @@ public final class NumberTheoryUtil {
      * Don't let anyone instantiate this class.
      */
     private NumberTheoryUtil() {
+    }
+
+    private <T> void checkArrayLength(int length, List<T> array) {
+        if (length != array.toArray().length) {
+            throw new IllegalArgumentException("Wrong Array length");
+        }
     }
 
     public static ArrayList<Long> divisors(long number) throws IllegalArgumentException {
@@ -172,6 +185,17 @@ public final class NumberTheoryUtil {
         return gcd(min, max % min);
     }
 
+    public static long gcd(ArrayList<Long> array) throws IllegalArgumentException {
+        if (array == null || array.size() < 2) {
+            throw new IllegalArgumentException("gcd Expected two numbers at least");
+        }
+        long result = gcd(array.get(0), array.get(1));
+        for (int i = 2; i < array.size(); i++) {
+            result = gcd(result, array.get(i));
+        }
+        return result;
+    }
+
     /**
      * Calculate the LCM (Least Common Multiple) of two numbers
      *
@@ -232,33 +256,14 @@ public final class NumberTheoryUtil {
     }
 
     public static long[] gcdAsLinearCombination(long a, long b) throws IllegalArgumentException {
-        long[] arrayListline;
-        ArrayList<long[]> lines = new ArrayList<>();
-        do {
-            arrayListline = UniqueRepresntation(a, b);
-            if (arrayListline[arrayListline.length - 1] == 0 && !lines.isEmpty()) {
-                break;
-            }
-            lines.add(arrayListline);
-            /* put one of the varibales (a,b) to the minmum of a,b (we selected a)
-                arrayListline is written as m = q * f + r,
-                then arrayListline[2] is minimum of a,b
-                and the other variable to the remainder,
-                then get the UniqueRepresntation of the new a,b in the next loop */
-            a = arrayListline[2];
-            b = arrayListline[3];
-            if (a == 0 || b == 0) {
-                break;
-            }
-        } while (true);
+        ArrayList<long[]> lines = gcdLines(a, b);
         if (lines.size() == 1) {
-            arrayListline = lines.get(0);
-            if (arrayListline[3] == 0) {
-                return new long[]{arrayListline[2], 1, arrayListline[2], 0L, arrayListline[0]};
+            long[] line = lines.get(0);
+            if (line[3] == 0) {
+                return new long[]{line[2], 1, line[2], 0L, line[0]};
             } else {
-                long[] result = remainder(arrayListline);
-                return new long[]{result[0], 1, result[1], result[2], result[3]};
-
+                line = remainder(line);
+                return new long[]{line[0], 1, line[1], line[2], line[3]};
             }
         }
         long bracketMultiple; // the quetionet of the factor
@@ -284,6 +289,27 @@ public final class NumberTheoryUtil {
 
     }
 
+    public static ArrayList<long[]> gcdLines(long a, long b) throws IllegalArgumentException {
+        ArrayList<long[]> lines = new ArrayList<>();
+        long[] arrayListline;
+        do {
+            arrayListline = UniqueRepresntation(a, b);
+            if (arrayListline[arrayListline.length - 1] == 0 && !lines.isEmpty()) {
+                break;
+            }
+            lines.add(arrayListline);
+            /* put one of the varibales (a,b) to the minmum of a,b (we selected a)
+            arrayListline is written as m = q * f + r,
+            then arrayListline[2] is minimum of a,b
+            and the other variable (we selected b) to the remainder,
+            then get the UniqueRepresntation of the new a,b in the next loop */
+            a = arrayListline[2];
+            b = arrayListline[3];
+            // breaks when remainder ==0 before getting the new UniqueRepresntation
+        } while (b != 0);
+        return lines;
+    }
+
     public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long expression) throws IllegalArgumentException {
         long[] result = new long[4];
         long[] gcdLinearCombination = gcdAsLinearCombination(xCoefficient, yCoefficient);
@@ -302,4 +328,50 @@ public final class NumberTheoryUtil {
         result[3] = -xCoefficient / gcdLinearCombination[0]; // a/d
         return result;
     }
+
+// check n (mod n)
+    private static void check_n_mod(long n) {
+        if (n < 1) {
+            throw new IllegalArgumentException("modulo must be >=1");
+        }
+
+    }
+
+// mod (a,n)
+    public static long mod(long a, long n) {
+        check_n_mod(n);
+        if (a >= n) {
+            a = a % n;
+        }
+        if (a < 0) {
+            a = (a % n) + n;
+            if (a == n) {
+                a -= n;
+            }
+        }
+        return a;
+    }
+
+    public static boolean isCongurent(long a, long b, long n) {
+        check_n_mod(n);
+        return (a - b) % n == 0;
+    }
+
+//    public static long linearCongurentSolve(long a, long c, long n) {
+//        check_n_mod(n);
+//
+//    }
+//
+//    //aX +b = C
+//    public static ArrayList<Long> linearCongurentSolve(long a, long b, long c, long n) {
+//        check_n_mod(n);
+//        ArrayList<Long> result = new ArrayList<>();
+//        for (int i = 0; i < n; i++) {
+//            if ((((a * i + b) - c) % n == 0)) {
+//                return i;
+//            }
+//        }
+//        return (a - (c - b));
+//    }
+
 }
