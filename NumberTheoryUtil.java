@@ -1,9 +1,7 @@
-package number.theory;
+package newpackage;
 // Biginteger over load;
 // tow char tau ='\u03C4';
 // sigma '\u03c3'
-// chinese
-// linear congurent
 // linear congroante; a(x) b n [less than n congroantes]
 
 /*
@@ -142,6 +140,10 @@ public final class NumberTheoryUtil {
             }
             return true;
         }
+    }
+
+    public static boolean isRelativePrime(long a, long b) {
+        return gcd(a, b) == 1;
     }
 
     /**
@@ -356,22 +358,94 @@ public final class NumberTheoryUtil {
         check_n_mod(n);
         return (a - b) % n == 0;
     }
+// aX = c
 
-//    public static long linearCongurentSolve(long a, long c, long n) {
-//        check_n_mod(n);
-//
-//    }
-//
-//    //aX +b = C
-//    public static ArrayList<Long> linearCongurentSolve(long a, long b, long c, long n) {
-//        check_n_mod(n);
-//        ArrayList<Long> result = new ArrayList<>();
-//        for (int i = 0; i < n; i++) {
-//            if ((((a * i + b) - c) % n == 0)) {
-//                return i;
-//            }
-//        }
-//        return (a - (c - b));
-//    }
+    public static ArrayList<Long> linearCongurentSolve(long a, long c, long n) {
+        return linearCongurentSolve(a, 0L, c, n);
+    }
+
+    //aX +b = C
+    public static ArrayList<Long> linearCongurentSolve(long a, long b, long c, long n) {
+        check_n_mod(n);
+        ArrayList<Long> result = new ArrayList<>();
+        for (long i = 0; i < n; i++) {
+            if ((((a * i + b) - c) % n == 0)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
+
+    private static void chineseRemainderEquationCheck(ArrayList<Long[]> equations) throws IllegalArgumentException {
+        if (equations == null) {
+            throw new IllegalArgumentException("null object for chinese equation");
+        }
+        final long equationsSize = equations.size();
+        if (equationsSize == 0) {
+            throw new IllegalArgumentException("Empty Array used as chinese equations.");
+        }
+        for (int i = 0; i < equationsSize; i++) {
+            if (equations.get(i) == null || equations.get(i).length != 2) {
+                throw new IllegalArgumentException("Chinese equation needs only two integers as input.");
+            }
+            check_n_mod(equations.get(i)[1]);
+        }
+
+        for (int i = 0; i < equationsSize; i++) {
+            for (int j = i + 1; j < equationsSize; j++) {
+                if (!isRelativePrime(equations.get(i)[1], equations.get(j)[1])) {
+                    throw new IllegalArgumentException("Chinese equation has non-Relative prime modulos");
+                }
+            }
+        }
+    }
+
+    //the input is  two integers (a) and (n) in the form x=a (mod n) for each equation
+    public static long chineseRemainderSolve(ArrayList<Long[]> equations) throws IllegalArgumentException {
+        chineseRemainderEquationCheck(equations);
+        long n = 1;
+        ArrayList<Long> N = new ArrayList<>();
+        ArrayList<Long> x = new ArrayList<>();
+        long result = 0;
+
+        final long equationsSize = equations.size();
+        for (int i = 0; i < equationsSize; i++) {
+            n *= equations.get(i)[1]; // n = n1 * n2 * ..... * nr
+        }
+
+        for (int i = 0; i < equationsSize; i++) {
+            N.add(n / equations.get(i)[1]); //Nk = n /nk
+        }
+
+        for (int i = 0; i < equationsSize; i++) {
+            /*
+            Nk * X = 1 mod (nk)
+            we solve this linear congurent,
+            then we get the first and only solution using get(0)
+             */
+            x.add((linearCongurentSolve(N.get(i), 1, equations.get(i)[1])).get(0));
+        }
+
+        for (int i = 0; i < equationsSize; i++) {
+            result += equations.get(i)[0] * N.get(i) * x.get(i);
+        }
+        result = mod(result, n);
+        return result;
+    }
+
+    public static long numberOfDivisors(long n) {
+        return divisors(n).size();
+    }
+
+    public static long sumOfDivisors(long n) {
+        ArrayList<Long> divisors = divisors(n);
+        long result = 0;
+
+        final long divisorsSize = divisors.size();
+        for (int i = 0; i < divisorsSize; i++) {
+            result += divisors.get(i);
+        }
+        return result;
+    }
 
 }
