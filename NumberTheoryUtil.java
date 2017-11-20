@@ -264,7 +264,6 @@ public final class NumberTheoryUtil {
             } else {
                 line = remainder(line);
                 return new long[]{line[0], 1, line[1], line[2], line[3]};
-
             }
         }
         long bracketMultiple; // the quetionet of the factor
