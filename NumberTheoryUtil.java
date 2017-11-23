@@ -4,7 +4,6 @@ package newpackage;
 // sigma '\u03c3'
 // linear congroante; a(x) b n [less than n congroantes]
 
-
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
  *
