@@ -294,6 +294,19 @@ public class NumberTheoryUtilTest {
         long result = NumberTheoryUtil.mod(a, n);
         assertEquals(expResult, result);
     }
+  
+    /**
+     * Test of isRelativePrime method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testIsRelativePrime() {
+        System.out.println("isRelativePrime");
+        long a = 13L;
+        long b = 24L;
+        boolean expResult = true;
+        boolean result = NumberTheoryUtil.isRelativePrime(a, b);
+        assertEquals(expResult, result);
+    }
 
     /**
      * Test of gcd method, of class NumberTheoryUtil.
@@ -393,5 +406,67 @@ public class NumberTheoryUtilTest {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
 
+    /**
+     * Test of isCongurent method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testIsCongurent() {
+        System.out.println("isCongurent");
+        long a = 0L;
+        long b = 0L;
+        long n = 0L;
+        boolean expResult = false;
+        boolean result = NumberTheoryUtil.isCongurent(a, b, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of linearCongurentSolve method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testLinearCongurentSolve_3args() {
+        System.out.println("linearCongurentSolve");
+        long a = 0L;
+        long c = 0L;
+        long n = 0L;
+        ArrayList<Long> expResult = null;
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, c, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of linearCongurentSolve method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testLinearCongurentSolve_4args() {
+        System.out.println("linearCongurentSolve");
+        long a = 0L;
+        long b = 0L;
+        long c = 0L;
+        long n = 0L;
+        ArrayList<Long> expResult = null;
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, c, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of chineseRemainderSolve method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testChineseRemainderSolve() {
+        System.out.println("chineseRemainderSolve");
+        ArrayList equations = new ArrayList<>();
+        equations.add(new Long[]{2L, 3L});
+        equations.add(new Long[]{3L, 5L});
+        equations.add(new Long[]{2L, 7L});
+        long expResult = 23L;
+        long result = NumberTheoryUtil.chineseRemainderSolve(equations);
+        assertEquals(expResult, result);
     }
 }
