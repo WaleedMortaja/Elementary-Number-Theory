@@ -1,11 +1,12 @@
+package number.theory;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package newpackage;
-
 import java.util.ArrayList;
+import number.theory.NumberTheoryUtil;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -89,7 +90,7 @@ public class NumberTheoryUtilTest {
      * Test of gcd method, of class NumberTheoryUtil.
      */
     @Test
-    public void testGcd() {
+    public void testGcd_long_long() {
         System.out.println("gcd");
         long a = 1000L;
         long b = -7L;
@@ -228,6 +229,45 @@ public class NumberTheoryUtilTest {
     }
 
     /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2GcdAsLinearCombination() {
+        System.out.println("2 gcdAsLinearCombination");
+        long a = 10L;
+        long b = 5L;
+        long[] expResult = {5, 1, 5, 0, 10};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3GcdAsLinearCombination() {
+        System.out.println("3 gcdAsLinearCombination");
+        long a = -10L;
+        long b = 5L;
+        long[] expResult = {5, 1, 5, 0, -10};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4GcdAsLinearCombination() {
+        System.out.println("4 gcdAsLinearCombination");
+        long a = -3L;
+        long b = 2L;
+        long[] expResult = {1, 1, - 3, 2, 2};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
      * Test of primeFacorization method, of class NumberTheoryUtil.
      */
     @Test
@@ -243,6 +283,19 @@ public class NumberTheoryUtilTest {
     }
 
     /**
+     * Test of mod method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testMod() {
+        System.out.println("mod");
+        long a = -20L;
+        long n = 7L;
+        long expResult = 1L;
+        long result = NumberTheoryUtil.mod(a, n);
+        assertEquals(expResult, result);
+    }
+  
+    /**
      * Test of isRelativePrime method, of class NumberTheoryUtil.
      */
     @Test
@@ -253,22 +306,6 @@ public class NumberTheoryUtilTest {
         boolean expResult = true;
         boolean result = NumberTheoryUtil.isRelativePrime(a, b);
         assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of gcd method, of class NumberTheoryUtil.
-     */
-    @Test
-    public void testGcd_long_long() {
-//        System.out.println("gcd");
-//        long a = 0L;
-//        long b = 0L;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.gcd(a, b);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -276,13 +313,28 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testGcd_ArrayList() {
-//        System.out.println("gcd");
-//        ArrayList<Long> array = null;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.gcd(array);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("gcd_ArrayList");
+        ArrayList<Long> array = new ArrayList<>();
+        array.add(84651L);
+        array.add(651L);
+        array.add(854L);
+        long expResult = 7;
+        long result = NumberTheoryUtil.gcd(array);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcd method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2Gcd_ArrayList() {
+        System.out.println("2 gcd_ArrayList");
+        ArrayList<Long> array = new ArrayList<>();
+        array.add(84651L);
+        array.add(651L);
+        long expResult = 21;
+        long result = NumberTheoryUtil.gcd(array);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -290,45 +342,84 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testGcdLines() {
-//        System.out.println("gcdLines");
-//        long a = 0L;
-//        long b = 0L;
-//        ArrayList expResult = null;
-//        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("gcdLines");
+        long a = 172L;
+        long b = 42L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{172, 4, 42, 4});
+        expResult.add(new long[]{42, 10, 4, 2});
+        expResult.add(new long[]{4, 2, 2, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
     }
 
     /**
-     * Test of mod method, of class NumberTheoryUtil.
+     * Test of gcdLines method, of class NumberTheoryUtil.
      */
     @Test
-    public void testMod() {
-//        System.out.println("mod");
-//        long a = 0L;
-//        long n = 0L;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.mod(a, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    public void test2GcdLines() {
+        System.out.println("2 gcdLines");
+        long a = -3L;
+        long b = 2L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{-3, -2, 2, 1});
+        expResult.add(new long[]{2, 2, 1, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
     }
+
+    /**
+     * Test of gcdLines method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3GcdLines() {
+        System.out.println("3 gcdLines");
+        long a = 10L;
+        long b = 5L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{10, 2, 5, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
+
+    }
+
+    /**
+     * Test of gcdLines method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4GcdLines() {
+        System.out.println("4 gcdLines");
+        long a = 4L;
+        long b = 5L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{4, 0, 5, 4});
+        expResult.add(new long[]{5, 1, 4, 1});
+        expResult.add(new long[]{4, 4, 1, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
 
     /**
      * Test of isCongurent method, of class NumberTheoryUtil.
      */
     @Test
     public void testIsCongurent() {
-//        System.out.println("isCongurent");
-//        long a = 0L;
-//        long b = 0L;
-//        long n = 0L;
-//        boolean expResult = false;
-//        boolean result = NumberTheoryUtil.isCongurent(a, b, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("isCongurent");
+        long a = 0L;
+        long b = 0L;
+        long n = 0L;
+        boolean expResult = false;
+        boolean result = NumberTheoryUtil.isCongurent(a, b, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -336,15 +427,15 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testLinearCongurentSolve_3args() {
-//        System.out.println("linearCongurentSolve");
-//        long a = 0L;
-//        long c = 0L;
-//        long n = 0L;
-//        ArrayList<Long> expResult = null;
-//        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, c, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("linearCongurentSolve");
+        long a = 0L;
+        long c = 0L;
+        long n = 0L;
+        ArrayList<Long> expResult = null;
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, c, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -352,16 +443,16 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testLinearCongurentSolve_4args() {
-//        System.out.println("linearCongurentSolve");
-//        long a = 0L;
-//        long b = 0L;
-//        long c = 0L;
-//        long n = 0L;
-//        ArrayList<Long> expResult = null;
-//        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, c, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("linearCongurentSolve");
+        long a = 0L;
+        long b = 0L;
+        long c = 0L;
+        long n = 0L;
+        ArrayList<Long> expResult = null;
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, c, n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
