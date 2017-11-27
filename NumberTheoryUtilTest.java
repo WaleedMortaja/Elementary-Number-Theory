@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package newpackage;
+package numberTheory;
 
 import java.util.ArrayList;
 import org.junit.After;
@@ -89,7 +84,7 @@ public class NumberTheoryUtilTest {
      * Test of gcd method, of class NumberTheoryUtil.
      */
     @Test
-    public void testGcd() {
+    public void testGcd_long_long() {
         System.out.println("gcd");
         long a = 1000L;
         long b = -7L;
@@ -110,19 +105,6 @@ public class NumberTheoryUtilTest {
         long expResult = 7000L;
         long result = NumberTheoryUtil.lcm(a, b);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of UniqueRepresntation method, of class NumberTheoryUtil.
-     */
-    @Test
-    public void testUniqueRepresntation() {
-        System.out.println("UniqueRepresntation");
-        long a = 1000L;
-        long b = -7L;
-        long[] expResult = {1000, -142, -7, 6};
-        long[] result = NumberTheoryUtil.UniqueRepresntation(a, b);
-        assertArrayEquals(expResult, result);
     }
 
     /**
@@ -215,6 +197,20 @@ public class NumberTheoryUtilTest {
     }
 
     /**
+     * Test of primeDivisors method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2PrimeDivisors() {
+        System.out.println("2 primeDivisors");
+        long number = 1234L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(2L);
+        expResult.add(617L);
+        ArrayList<Long> result = NumberTheoryUtil.primeDivisors(number);
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
      */
     @Test
@@ -228,17 +224,68 @@ public class NumberTheoryUtilTest {
     }
 
     /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2GcdAsLinearCombination() {
+        System.out.println("2 gcdAsLinearCombination");
+        long a = 10L;
+        long b = 5L;
+        long[] expResult = {5, 1, 5, 0, 10};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3GcdAsLinearCombination() {
+        System.out.println("3 gcdAsLinearCombination");
+        long a = -10L;
+        long b = 5L;
+        long[] expResult = {5, 1, 5, 0, -10};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcdAsLinearCombination method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4GcdAsLinearCombination() {
+        System.out.println("4 gcdAsLinearCombination");
+        long a = -3L;
+        long b = 2L;
+        long[] expResult = {1, 1, - 3, 2, 2};
+        long[] result = NumberTheoryUtil.gcdAsLinearCombination(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
      * Test of primeFacorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void testPrimeFacorization() {
-        System.out.println("primeFacorization");
-        long number = -700L;
+    public void test2PrimeFacorization() {
+        System.out.println("2 primeFacorization");
+        long number = -10L;
         ArrayList<String> expResult = new ArrayList<>();
-        expResult.add("2^2");
-        expResult.add("5^2");
-        expResult.add("7");
+        expResult.add("2");
+        expResult.add("5");
         ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of mod method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testMod() {
+        System.out.println("mod");
+        long a = -20L;
+        long n = 7L;
+        long expResult = 1L;
+        long result = NumberTheoryUtil.mod(a, n);
         assertEquals(expResult, result);
     }
 
@@ -253,22 +300,6 @@ public class NumberTheoryUtilTest {
         boolean expResult = true;
         boolean result = NumberTheoryUtil.isRelativePrime(a, b);
         assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of gcd method, of class NumberTheoryUtil.
-     */
-    @Test
-    public void testGcd_long_long() {
-//        System.out.println("gcd");
-//        long a = 0L;
-//        long b = 0L;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.gcd(a, b);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -276,13 +307,23 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testGcd_ArrayList() {
-//        System.out.println("gcd");
-//        ArrayList<Long> array = null;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.gcd(array);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("gcd_ArrayList");
+        long[] array = {84651L, 651L, 854L};
+        long expResult = 7;
+        long result = NumberTheoryUtil.gcd(array);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of gcd method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2Gcd_Array() {
+        System.out.println("2 gcd_Array");
+        long[] array = {84651L, 651L};
+        long expResult = 21;
+        long result = NumberTheoryUtil.gcd(array);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -290,29 +331,69 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testGcdLines() {
-//        System.out.println("gcdLines");
-//        long a = 0L;
-//        long b = 0L;
-//        ArrayList expResult = null;
-//        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("gcdLines");
+        long a = 172L;
+        long b = 42L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{172, 4, 42, 4});
+        expResult.add(new long[]{42, 10, 4, 2});
+        expResult.add(new long[]{4, 2, 2, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
     }
 
     /**
-     * Test of mod method, of class NumberTheoryUtil.
+     * Test of gcdLines method, of class NumberTheoryUtil.
      */
     @Test
-    public void testMod() {
-//        System.out.println("mod");
-//        long a = 0L;
-//        long n = 0L;
-//        long expResult = 0L;
-//        long result = NumberTheoryUtil.mod(a, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    public void test2GcdLines() {
+        System.out.println("2 gcdLines");
+        long a = -3L;
+        long b = 2L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{-3, -2, 2, 1});
+        expResult.add(new long[]{2, 2, 1, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
+    }
+
+    /**
+     * Test of gcdLines method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3GcdLines() {
+        System.out.println("3 gcdLines");
+        long a = 10L;
+        long b = 5L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{10, 2, 5, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
+
+    }
+
+    /**
+     * Test of gcdLines method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4GcdLines() {
+        System.out.println("4 gcdLines");
+        long a = 4L;
+        long b = 5L;
+        ArrayList expResult = new ArrayList();
+        expResult.add(new long[]{4, 0, 5, 4});
+        expResult.add(new long[]{5, 1, 4, 1});
+        expResult.add(new long[]{4, 4, 1, 0});
+        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        for (int i = 0; i < result.size(); i++) {
+            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+        }
     }
 
     /**
@@ -320,15 +401,13 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testIsCongurent() {
-//        System.out.println("isCongurent");
-//        long a = 0L;
-//        long b = 0L;
-//        long n = 0L;
-//        boolean expResult = false;
-//        boolean result = NumberTheoryUtil.isCongurent(a, b, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("isCongurent");
+        long a = 10L;
+        long b = 4L;
+        long n = 4L;
+        boolean expResult = false;
+        boolean result = NumberTheoryUtil.isCongurent(a, b, n);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -336,32 +415,14 @@ public class NumberTheoryUtilTest {
      */
     @Test
     public void testLinearCongurentSolve_3args() {
-//        System.out.println("linearCongurentSolve");
-//        long a = 0L;
-//        long c = 0L;
-//        long n = 0L;
-//        ArrayList<Long> expResult = null;
-//        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, c, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of linearCongurentSolve method, of class NumberTheoryUtil.
-     */
-    @Test
-    public void testLinearCongurentSolve_4args() {
-//        System.out.println("linearCongurentSolve");
-//        long a = 0L;
-//        long b = 0L;
-//        long c = 0L;
-//        long n = 0L;
-//        ArrayList<Long> expResult = null;
-//        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, c, n);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        System.out.println("linearCongurentSolve");
+        long a = 6L;
+        long c = 3L;
+        long n = 5L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(3L);
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, c, n);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -378,4 +439,692 @@ public class NumberTheoryUtilTest {
         long result = NumberTheoryUtil.chineseRemainderSolve(equations);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of gcd method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testGcd_longArr() {
+        System.out.println("gcd");
+        long[] array = {4, 94, 46, 152};
+        long expResult = 2L;
+        long result = NumberTheoryUtil.gcd(array);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of divisionAlgorithm method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testDivisionAlgorithm() {
+        System.out.println("UniqueRepresntation");
+        long a = 1000L;
+        long b = -7L;
+        long[] expResult = {1000, -142, -7, 6};
+        long[] result = NumberTheoryUtil.divisionAlgorithm(a, b);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of linearCongurentSolve method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testLinearCongurentSolve() {
+        System.out.println("linearCongurentSolve");
+        long a = 18L;
+        long b = 30L;
+        long n = 42L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(4L);
+        expResult.add(11L);
+        expResult.add(18L);
+        expResult.add(25L);
+        expResult.add(32L);
+        expResult.add(39L);
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of linearCongurentSolve method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2LinearCongurentSolve() {
+        System.out.println("2 linearCongurentSolve");
+        long a = 9L;
+        long b = 21L;
+        long n = 30L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(9L);
+        expResult.add(19L);
+        expResult.add(29L);
+        ArrayList<Long> result = NumberTheoryUtil.linearCongurentSolve(a, b, n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of decToBinPowerToGetModulo method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testDecToBinPowerToGetModulo() {
+        System.out.println("decToBinPowerToGetModulo");
+        long a = 5L;
+        long power = 110L;
+        long n = 131L;
+        long expResult = 60L;
+        long result = NumberTheoryUtil.decToBinPowerToGetModulo(a, power, n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of decToBinPowerToGetModulo method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2DecToBinPowerToGetModulo() {
+        System.out.println("2 decToBinPowerToGetModulo");
+        long a = 19L;
+        long power = 53L;
+        long n = 503L;
+        long expResult = 406L;
+        long result = NumberTheoryUtil.decToBinPowerToGetModulo(a, power, n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of tau method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testNumberOfDivisors() {
+        System.out.println("numberOfDivisors");
+        long n = 0L;
+        long expResult = 0L;
+        long result = NumberTheoryUtil.tau(n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of sigma method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testSumOfDivisors() {
+        System.out.println("sumOfDivisors");
+        long n = 0L;
+        long expResult = 0L;
+        long result = NumberTheoryUtil.sigma(n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testPrimeFacorization_long_boolean() {
+        System.out.println("primeFacorization");
+        long number = -700L;
+        boolean isPow1hidden = false;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2^2");
+        expResult.add("5^2");
+        expResult.add("7^1");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2PrimeFacorization_long_boolean() {
+        System.out.println("primeFacorization");
+        long number = -700L;
+        boolean isPow1hidden = true;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2^2");
+        expResult.add("5^2");
+        expResult.add("7");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3PrimeFacorization_long_boolean() {
+        System.out.println("primeFacorization");
+        long number = -10L;
+        boolean isPow1hidden = true;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2");
+        expResult.add("5");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4PrimeFacorization_long_boolean() {
+        System.out.println("primeFacorization");
+        long number = -10L;
+        boolean isPow1hidden = false;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2^1");
+        expResult.add("5^1");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testPrimeFacorization_long() {
+        System.out.println("primeFacorization");
+        long number = -700L;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2^2");
+        expResult.add("5^2");
+        expResult.add("7");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primeFacorization method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2PrimeFacorization_long() {
+        System.out.println("2 primeFacorization");
+        long number = -10L;
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("2");
+        expResult.add("5");
+        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testPhi() {
+        System.out.println("phi");
+        long n = 1L;
+        long expResult = 1L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2Phi() {
+        System.out.println("phi");
+        long n = 2L;
+        long expResult = 1L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3Phi() {
+        System.out.println("phi");
+        long n = 3L;
+        long expResult = 2L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4Phi() {
+        System.out.println("phi");
+        long n = 4L;
+        long expResult = 2L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test5Phi() {
+        System.out.println("phi");
+        long n = 5L;
+        long expResult = 4L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test6Phi() {
+        System.out.println("phi");
+        long n = 6L;
+        long expResult = 2L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test7Phi() {
+        System.out.println("phi");
+        long n = 7L;
+        long expResult = 6L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test8Phi() {
+        System.out.println("phi");
+        long n = 8L;
+        long expResult = 4L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test9Phi() {
+        System.out.println("phi");
+        long n = 9L;
+        long expResult = 6L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test10Phi() {
+        System.out.println("phi");
+        long n = 10L;
+        long expResult = 4L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test11Phi() {
+        System.out.println("phi");
+        long n = 16L;
+        long expResult = 8L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test12Phi() {
+        System.out.println("phi");
+        long n = 35L;
+        long expResult = 24L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test13Phi() {
+        System.out.println("phi");
+        long n = 90L;
+        long expResult = 24L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test14Phi() {
+        System.out.println("phi");
+        long n = 180L;
+        long expResult = 48L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of phi method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test15Phi() {
+        System.out.println("phi");
+        long n = 9000L;
+        long expResult = 2400L;
+        long result = NumberTheoryUtil.phi(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of tau method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testTau() {
+        System.out.println("tau");
+        long n = 0L;
+        long expResult = 0L;
+        long result = NumberTheoryUtil.tau(n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of sigma method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testSigma() {
+        System.out.println("sigma");
+        long n = 0L;
+        long expResult = 0L;
+        long result = NumberTheoryUtil.sigma(n);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of strPow method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testStrPow() {
+        System.out.println("strPow");
+        String s = "2^4";
+        long expResult = 16L;
+        long result = NumberTheoryUtil.strPow(s);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of strPow method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2StrPow() {
+        System.out.println("strPow");
+        String s = "(24)";
+        try {
+            NumberTheoryUtil.strPow(s);
+        } catch (NumberFormatException nfe) {
+            assertEquals(nfe.getMessage(), "Cant find '^' char in the given string");
+        }
+    }
+    
+    /**
+     * Test of strPow method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3StrPow() {
+        System.out.println("strPow");
+        String s = "(2^4";
+        try {
+            NumberTheoryUtil.strPow(s);
+        } catch (NumberFormatException nfe) {
+            int indexOfPoweSign = s.indexOf('^');
+            final int sLength = s.length();
+            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+        }
+    }
+
+    /**
+     * Test of strPow method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4StrPow() {
+        System.out.println("strPow");
+        String s = "(2)^4";
+        long expResult = 16L;
+        long result = NumberTheoryUtil.strPow(s);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of strPow method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test5StrPow() {
+        System.out.println("strPow");
+        String s = "(2)^(4";
+        try {
+            NumberTheoryUtil.strPow(s);
+        } catch (NumberFormatException nfe) {
+            int indexOfPoweSign = s.indexOf('^');
+            final int sLength = s.length();
+            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+        }
+    }
+
+    // جرب كل حاللات الأقواس
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test4StrPow() {
+//        System.out.println("strPow");
+//        String s = "2)^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test3StrPow() {
+//        System.out.println("strPow");
+//        String s = "2^(4)";
+//        long expResult = 16L;
+//        long result = NumberTheoryUtil.strPow(s);
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test4StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4)";
+//        long expResult = 16L;
+//        long result = NumberTheoryUtil.strPow(s);
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test8StrPow() {
+//        System.out.println("strPow");
+//        String s = "2^(4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test9StrPow() {
+//        System.out.println("strPow");
+//        String s = "2^4)";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test10StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^(4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test11StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^(4)";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
+//
+//    /**
+//     * Test of strPow method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void test6StrPow() {
+//        System.out.println("strPow");
+//        String s = "(2^4";
+//        try {
+//            NumberTheoryUtil.strPow(s);
+//        } catch (NumberFormatException nfe) {
+//            int indexOfPoweSign = s.indexOf('^');
+//            final int sLength = s.length();
+//            assertEquals(nfe.getMessage(), "The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+//        }
+//    }
 }
