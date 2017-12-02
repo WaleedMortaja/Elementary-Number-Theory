@@ -22,7 +22,6 @@ package numberTheory;
  */
 import java.util.ArrayList;
 import java.util.List;
-import org.omg.CORBA.portable.UnknownException;
 
 /**
  * Implementation for some methods used in Elementary Number Theory.
