@@ -388,7 +388,6 @@ public class NumberTheoryUtilTest {
         for (int i = 0; i < result.size(); i++) {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
-
     }
 
     /**
@@ -408,8 +407,8 @@ public class NumberTheoryUtilTest {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
     }
-
-    /**
+  
+      /**
      * Test of gcdLines method, of class NumberTheoryUtil.
      */
     @Test
@@ -447,8 +446,8 @@ public class NumberTheoryUtilTest {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
     }
-
-    /**
+  
+  /**
      * Test of isCongurent method, of class NumberTheoryUtil.
      */
     @Test
@@ -466,7 +465,7 @@ public class NumberTheoryUtilTest {
      * Test of linearCongurentSolve method, of class NumberTheoryUtil.
      */
     @Test
-    public void testLinearCongurentSolve_3args() {
+   public void testLinearCongurentSolve_3args() {
         System.out.println("linearCongurentSolve");
         long a = 6L;
         long c = 3L;
