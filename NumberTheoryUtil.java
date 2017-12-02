@@ -22,6 +22,7 @@ package numberTheory;
  */
 import java.util.ArrayList;
 import java.util.List;
+import org.omg.CORBA.portable.UnknownException;
 
 /**
  * Implementation for some methods used in Elementary Number Theory.
@@ -218,13 +219,13 @@ public final class NumberTheoryUtil {
 
     }
 
-    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long expression) throws IllegalArgumentException {
+    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long otherSide) throws IllegalArgumentException {
         long[] result = new long[4];
         long[] gcdLinearCombination = gcdAsLinearCombination(xCoefficient, yCoefficient);
-        if (expression % gcdLinearCombination[0] != 0) {
+        if (otherSide % gcdLinearCombination[0] != 0) {
             throw new IllegalArgumentException("No, solution, the gcd does not divide the expression");
         }
-        long multiplyFactor = expression / gcdLinearCombination[0];
+        long multiplyFactor = otherSide / gcdLinearCombination[0];
 
         //multiply x0,y0 by multiplyFactor
         gcdLinearCombination[1] *= multiplyFactor;
@@ -493,17 +494,50 @@ public final class NumberTheoryUtil {
         ArrayList<String> primeFacorization = primeFacorization(n, false);
         long result = 1;
         for (int i = 0; i < primeFacorization.size(); i++) {
-            long p = Long.parseLong(primeFacorization.get(i).substring(0, 1)); //the first number
-            long k = Long.parseLong(primeFacorization.get(i).substring(2, 3)); //the first number
-
+            final String primeWithPower = primeFacorization.get(i);
+            final int indexOfPow = primeWithPower.indexOf('^');
+            long p = Long.parseLong(primeWithPower.substring(0, indexOfPow)); //the first number
+            long k = Long.parseLong(primeWithPower.substring(indexOfPow + 1)); //the power
             result *= (Math.pow(p, k) - Math.pow(p, k - 1));
         }
         return result;
     }
 
+    public static boolean hasOrder(long a, long n) {
+        check_n_mod(n);
+        return isRelativePrime(a, n);
+    }
+
+    /**
+     *
+     * @param a
+     * @param n
+     * @return
+     * @throws IllegalArgumentException when gcd(a,n) does NOT equal 1
+     * @throws UnknownError logically, it shouldn't
+     */
+    public static long order(long a, long n) throws UnknownError {
+        if (!hasOrder(a, n)) {
+            throw new IllegalArgumentException("gcd(" + a + "," + n + ") does NOT equal 1");
+        }
+        long phi = phi(n);
+        ArrayList<Long> phiDivsiors = divisors(phi);
+        for (Long phiDivsior : phiDivsiors) {
+            if (isCongurent((long) Math.pow(a, phiDivsior), 1, n)) {
+                return phiDivsior;
+            }
+        }
+        throw new UnknownError("unknow error in the order method ... there is no answer");
+    }
+
+    public static boolean isPremativeRoot(long a, long n) {
+        check_n_mod(n);
+        return phi(n) == order(a, n);
+
+    }
+
     public static long strPow(String s) throws NullPointerException, IllegalArgumentException, NumberFormatException {
         final int indexOfPoweSign = s.indexOf('^');
-
         if (indexOfPoweSign < 0) { //can also use indexOfPoweSign ==-1
             throw new IllegalArgumentException("Cant find '^' char in the given string");
         }
@@ -517,7 +551,7 @@ public final class NumberTheoryUtil {
                 n1 = Long.parseLong(s.substring(1, indexOfPoweSign));
                 n2 = Long.parseLong(s.substring(indexOfPoweSign + 1, sLength - 1));
             } else {
-                throw new IllegalArgumentException("The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (indexOfPoweSign - 1) + " or " + (sLength - 1));
+                throw new IllegalArgumentException("The string does NOT have equal paranthes. expected a closing paranthese at char with index" + indexOfPoweSign + " or " + (sLength - 1));
             }
         } else if (s.charAt(indexOfPoweSign - 1) == ')') {
             throw new IllegalArgumentException("The string does NOT have equal paranthes. expected an opening paranthese at char with index 0");
@@ -532,11 +566,18 @@ public final class NumberTheoryUtil {
                 throw new IllegalArgumentException("The string does NOT have equal paranthes. expected a closing paranthese at char with index" + (sLength - 1));
             }
         } else if (s.charAt(sLength - 1) == ')') {
-            throw new IllegalArgumentException("The string does NOT have equal paranthes. expected an opening paranthese at char with index " + (indexOfPoweSign + 1));
+            if (s.charAt(0) == '(') {
+                if (s.charAt(indexOfPoweSign - 1) == ')') {
+                    throw new IllegalArgumentException("The string does NOT have equal paranthes. expected an opening paranthese at char with index " + (indexOfPoweSign + 1));
+                } else {
+                    n2 = Long.parseLong(s.substring(indexOfPoweSign + 1, sLength - 1));
+                }
+            } else {
+                throw new IllegalArgumentException("The string does NOT have equal paranthes. expected an opening paranthese at char with index 0 or " + (indexOfPoweSign + 1));
+            }
         } else {
             n2 = Long.parseLong(s.substring(indexOfPoweSign + 1, sLength));
         }
-
         return (long) Math.pow(n1, n2);
     }
 
