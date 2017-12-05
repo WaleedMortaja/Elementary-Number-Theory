@@ -1,5 +1,4 @@
 package numberTheory;
-//number of primitive roots
 // Biginteger over load;
 // tow char tau ='\u03C4';
 // sigma '\u03c3'
@@ -147,7 +146,6 @@ public class NumberTheoryUtil {
 
     @SuppressWarnings("AssignmentToMethodParameter")
     public static ArrayList<long[]> gcdLines(long a, long b) throws IllegalArgumentException {
-        @SuppressWarnings("CollectionWithoutInitialCapacity")
         ArrayList<long[]> lines = new ArrayList<>(10);
         long[] arrayListline;
         do {
@@ -408,7 +406,13 @@ public class NumberTheoryUtil {
         ArrayList<Long> congurences = new ArrayList<>(10);
         congurences.add(mod(a, n)); // for a^(2^0) = a^1 = a congurend a mod n
         for (int i = 1; i < powerLength; i++) {
-            congurences.add(mod((long) Math.pow(congurences.get(i - 1), 2), n));
+            final double result = Math.pow(congurences.get(i - 1), 2);
+            if (result > Long.MAX_VALUE) {
+                throw new IllegalArgumentException("The number is too large");
+            } else if (result < Long.MIN_VALUE) {
+                throw new IllegalArgumentException("The number is too small");
+            }
+            congurences.add(mod((long) result, n));
         }
         long result = 1;
         int lastIndexOfpower = powerLength - 1;
@@ -442,8 +446,14 @@ public class NumberTheoryUtil {
         }
     }
 
-    //the input is  two integers (a) and (n) in the form x=a (mod n) for each equation
-    public static long chineseRemainderSolve(ArrayList<Long[]> equations) throws IllegalArgumentException {
+    /**
+     * The input is two integers (a) and (n) in the form x=a (mod n) for each
+     * equation
+     *
+     *
+     *
+     */
+    public static long[] chineseRemainderSolve(ArrayList<Long[]> equations) throws IllegalArgumentException {
         chineseRemainderEquationCheck(equations);
         long n = 1;
         ArrayList<Long> N = new ArrayList<>(10);
@@ -472,7 +482,7 @@ public class NumberTheoryUtil {
             result += equations.get(i)[0] * N.get(i) * x.get(i);
         }
         result = mod(result, n);
-        return result;
+        return new long[]{result, n};
     }
 
     public static long tau(long n) {
@@ -602,7 +612,7 @@ public class NumberTheoryUtil {
         return result;
     }
 
-    public static long numbOfPrimitiveRoots(long n) {
+    public static long numOfPrimitiveRoots(long n) {
         check_n_mod(n);
 
 //        ArrayList<Long> result = new ArrayList<>();
@@ -641,6 +651,7 @@ public class NumberTheoryUtil {
 
     public static long strPow(String s) throws NullPointerException, IllegalArgumentException, NumberFormatException {
         final int indexOfPoweSign = s.indexOf('^');
+
         if (indexOfPoweSign < 0) { //can also use indexOfPoweSign ==-1
             throw new IllegalArgumentException("Cant find '^' char in the given string");
         }
@@ -681,14 +692,20 @@ public class NumberTheoryUtil {
         } else {
             n2 = Long.parseLong(s.substring(indexOfPoweSign + 1, sLength));
         }
-        return (long) Math.pow(n1, n2);
+        final double result = Math.pow(n1, n2);
+        if (result > Long.MAX_VALUE) {
+            throw new IllegalArgumentException("The number is too large");
+        } else if (result < Long.MIN_VALUE) {
+            throw new IllegalArgumentException("The number is too small");
+        }
+        return (long) result;
     }
 
     /**
      * Don't let anyone instantiate this class.
      */
     private NumberTheoryUtil() {
-}
+    }
 
     private <T> void checkArrayLength(int length, List<T> array) {
         if (length != array.toArray().length) {
