@@ -276,16 +276,16 @@ public class NumberTheoryUtilTest {
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization() {
-        System.out.println("2 primeFacorization");
+    public void test2PrimeFactorization() {
+        System.out.println("primeFactorization");
         long number = -10L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
@@ -407,8 +407,8 @@ public class NumberTheoryUtilTest {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
     }
-  
-      /**
+
+    /**
      * Test of gcdLines method, of class NumberTheoryUtil.
      */
     @Test
@@ -446,8 +446,8 @@ public class NumberTheoryUtilTest {
             assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
         }
     }
-  
-  /**
+
+    /**
      * Test of isCongurent method, of class NumberTheoryUtil.
      */
     @Test
@@ -465,7 +465,7 @@ public class NumberTheoryUtilTest {
      * Test of linearCongurentSolve method, of class NumberTheoryUtil.
      */
     @Test
-   public void testLinearCongurentSolve_3args() {
+    public void testLinearCongurentSolve_3args() {
         System.out.println("linearCongurentSolve");
         long a = 6L;
         long c = 3L;
@@ -702,93 +702,93 @@ public class NumberTheoryUtilTest {
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void testPrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void testPrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -700L;
         boolean isPow1hidden = false;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7^1");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test2PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -700L;
         boolean isPow1hidden = true;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test3PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test3PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -10L;
         boolean isPow1hidden = true;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test4PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test4PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -10L;
         boolean isPow1hidden = false;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^1");
         expResult.add("5^1");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void testPrimeFacorization_long() {
-        System.out.println("primeFacorization");
+    public void testPrimeFactorization_long() {
+        System.out.println("primeFactorization");
         long number = -700L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization_long() {
-        System.out.println("2 primeFacorization");
+    public void test2PrimeFactorization_long() {
+        System.out.println("2 primeFactorization");
         long number = -10L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
@@ -1326,67 +1326,157 @@ public class NumberTheoryUtilTest {
     }
 
     /**
-     * Test of isPremativeRoot method, of class NumberTheoryUtil.
+     * Test of isPrimitiveRoot method, of class NumberTheoryUtil.
      */
     @Test
-    public void testIsPremativeRoot() {
-        System.out.println("isPremativeRoot");
+    public void testIsPrimitiveRoot() {
+        System.out.println("isPrimitiveRoot");
         long a = 2L;
         long n = 7L;
         boolean expResult = false;
-        boolean result = NumberTheoryUtil.isPremativeRoot(a, n);
+        boolean result = NumberTheoryUtil.isPrimitiveRoot(a, n);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of isPremativeRoot method, of class NumberTheoryUtil.
+     * Test of isPrimitiveRoot method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2IsPremativeRoot() {
-        System.out.println("isPremativeRoot");
+    public void test2IsPrimitiveRoot() {
+        System.out.println("isPrimitiveRoot");
         long a = 2L;
         long n = 17L;
         boolean expResult = false;
-        boolean result = NumberTheoryUtil.isPremativeRoot(a, n);
+        boolean result = NumberTheoryUtil.isPrimitiveRoot(a, n);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of isPremativeRoot method, of class NumberTheoryUtil.
+     * Test of isPrimitiveRoot method, of class NumberTheoryUtil.
      */
     @Test
-    public void test3IsPremativeRoot() {
-        System.out.println("isPremativeRoot");
+    public void test3IsPrimitiveRoot() {
+        System.out.println("isPrimitiveRoot");
         long a = 3L;
         long n = 17L;
         boolean expResult = true;
-        boolean result = NumberTheoryUtil.isPremativeRoot(a, n);
+        boolean result = NumberTheoryUtil.isPrimitiveRoot(a, n);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of isPremativeRoot method, of class NumberTheoryUtil.
+     * Test of isPrimitiveRoot method, of class NumberTheoryUtil.
      */
     @Test
-    public void test4IsPremativeRoot() {
-        System.out.println("isPremativeRoot");
+    public void test4IsPrimitiveRoot() {
+        System.out.println("isPrimitiveRoot");
         long a = 5L;
         long n = 17L;
         boolean expResult = true;
-        boolean result = NumberTheoryUtil.isPremativeRoot(a, n);
+        boolean result = NumberTheoryUtil.isPrimitiveRoot(a, n);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of isPremativeRoot method, of class NumberTheoryUtil.
+     * Test of isPrimitiveRoot method, of class NumberTheoryUtil.
      */
     @Test
-    public void test5IsPremativeRoot() {
-        System.out.println("isPremativeRoot");
+    public void test5IsPrimitiveRoot() {
+        System.out.println("isPrimitiveRoot");
         long a = 3L;
         long n = 7L;
         boolean expResult = true;
-        boolean result = NumberTheoryUtil.isPremativeRoot(a, n);
+        boolean result = NumberTheoryUtil.isPrimitiveRoot(a, n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of relativlyPrimes method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testRelativlyPrimes() {
+        System.out.println("relativlyPrimes");
+        long n = 20L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(1L);
+        expResult.add(3L);
+        expResult.add(7L);
+        expResult.add(9L);
+        expResult.add(11L);
+        expResult.add(13L);
+        expResult.add(17L);
+        expResult.add(19L);
+        ArrayList<Long> result = NumberTheoryUtil.relativlyPrimes(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primitiveRoots method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void testPrimitiveRoots() {
+        System.out.println("primitiveRoots");
+        long n = 15L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        ArrayList<Long> result = NumberTheoryUtil.primitiveRoots(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primitiveRoots method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test2PrimitiveRoots() {
+        System.out.println("primitiveRoots");
+        long n = 21L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        ArrayList<Long> result = NumberTheoryUtil.primitiveRoots(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primitiveRoots method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test3PrimitiveRoots() {
+        System.out.println("primitiveRoots");
+        long n = 6L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(5L);
+        ArrayList<Long> result = NumberTheoryUtil.primitiveRoots(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primitiveRoots method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test4PrimitiveRoots() {
+        System.out.println("primitiveRoots");
+        long n = 31L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(3L);
+        expResult.add(17L);
+        expResult.add(24L);
+        expResult.add(22L);
+        expResult.add(12L);
+        expResult.add(11L);
+        expResult.add(21L);
+        ArrayList<Long> result = NumberTheoryUtil.primitiveRoots(n);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of primitiveRoots method, of class NumberTheoryUtil.
+     */
+    @Test
+    public void test5PrimitiveRoots() {
+        System.out.println("primitiveRoots");
+        long n = 7L;
+        ArrayList<Long> expResult = new ArrayList<>();
+        expResult.add(3L);
+        expResult.add(5L);
+        ArrayList<Long> result = NumberTheoryUtil.primitiveRoots(n);
         assertEquals(expResult, result);
     }
 }

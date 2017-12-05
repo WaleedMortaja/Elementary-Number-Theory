@@ -1,9 +1,9 @@
 package numberTheory;
+//number of primitive roots
 // Biginteger over load;
 // tow char tau ='\u03C4';
 // sigma '\u03c3'
 // triple bar (may used as congurent)  ≡
-
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
  *
@@ -118,7 +118,7 @@ public final class NumberTheoryUtil {
     }
 
     public static long gcd(long... array) throws IllegalArgumentException {
-        if (array == null || array.length < 2) {
+        if (array.length < 2) {
             throw new IllegalArgumentException("gcd Expected two numbers at least");
         }
         long result = gcd(array[0], array[1]);
@@ -145,6 +145,18 @@ public final class NumberTheoryUtil {
         return Math.abs(a * b) / gcd(a, b);
     }
 
+    public static long lcm(long... array) throws IllegalArgumentException {
+        if (array.length < 2) {
+            throw new IllegalArgumentException("lcm Expected two numbers at least");
+        }
+        long result = lcm(array[0], array[1]);
+        for (int i = 2; i < array.length; i++) {
+            result = lcm(result, array[i]);
+        }
+        return result;
+    }
+
+    @SuppressWarnings("AssignmentToMethodParameter")
     public static ArrayList<long[]> gcdLines(long a, long b) throws IllegalArgumentException {
         ArrayList<long[]> lines = new ArrayList<>();
         long[] arrayListline;
@@ -166,13 +178,13 @@ public final class NumberTheoryUtil {
         return lines;
     }
 
+    /**
+     * swap the elements of the line as remainder = multiple - quotient*factor
+     *
+     * m = q * f + r
+     * r = m - q * f
+     */
     public static long[] remainder(long[] line) throws IllegalArgumentException, NullPointerException {
-        //swap the elements of the line as remainder  = multiple - quotient*factor
-        // m = q * f + r
-        // r = m - q * f
-//        if (line == null) {
-//            throw new IllegalArgumentException("Cant get the remainder for null");
-//        } else 
         if (line.length != 4) {
             throw new IllegalArgumentException("Array length must be 4, found array with length: " + line.length);
         }
@@ -317,7 +329,7 @@ public final class NumberTheoryUtil {
         return result;
     }
 
-    public static ArrayList<String> primeFacorization(long number, boolean isPow1hidden) {
+    public static ArrayList<String> primeFactorization(long number, boolean isPow1hidden) {
         ArrayList<String> result = new ArrayList<>();
         /* no need for Math.abs(number) because primeDivisors method do it,
         and returns the primes which are always positive */
@@ -338,8 +350,8 @@ public final class NumberTheoryUtil {
         return result;
     }
 
-    public static ArrayList<String> primeFacorization(long number) {
-        return primeFacorization(number, true);
+    public static ArrayList<String> primeFactorization(long number) {
+        return primeFactorization(number, true);
     }
 
 // check n (mod n)
@@ -490,7 +502,7 @@ public final class NumberTheoryUtil {
     }
 
     public static long phi(long n) {
-        ArrayList<String> primeFacorization = primeFacorization(n, false);
+        ArrayList<String> primeFacorization = primeFactorization(n, false);
         long result = 1;
         for (int i = 0; i < primeFacorization.size(); i++) {
             final String primeWithPower = primeFacorization.get(i);
@@ -520,19 +532,85 @@ public final class NumberTheoryUtil {
             throw new IllegalArgumentException("gcd(" + a + "," + n + ") does NOT equal 1");
         }
         long phi = phi(n);
-        ArrayList<Long> phiDivsiors = divisors(phi);
-        for (Long phiDivsior : phiDivsiors) {
-            if (isCongurent((long) Math.pow(a, phiDivsior), 1, n)) {
-                return phiDivsior;
+        ArrayList<Long> phiDivisors = divisors(phi);
+        for (Long phiDivisor : phiDivisors) {
+            if (isCongurent((long) Math.pow(a, phiDivisor), 1, n)) {
+                return phiDivisor;
             }
         }
         throw new UnknownError("unknow error in the order method ... there is no answer");
     }
 
-    public static boolean isPremativeRoot(long a, long n) {
+    public static boolean isPrimitiveRoot(long a, long n) {
         check_n_mod(n);
         return phi(n) == order(a, n);
 
+    }
+
+    /**
+     *
+     * @param n the input number to get the numbers between 1 and it (inclusive)
+     * and that are relativly primes to it.
+     * @return the numbers between 1 and <code>n</code> (inclusive) and that are
+     * relativly primes to <code>n</code>
+     */
+    public static ArrayList<Long> relativlyPrimes(long n) {
+        check_n_mod(n);
+        ArrayList<Long> result = new ArrayList<>();
+        for (long i = 1; i < n; i++) {
+            if (isRelativePrime(i, n)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Long> primitiveRoots(long n) {
+        check_n_mod(n);
+
+        ArrayList<Long> result = new ArrayList<>();
+
+        ArrayList<Long> relativlyPrimes = relativlyPrimes(n);
+        final int relativlyPrimesSize = relativlyPrimes.size();
+
+        long phi = phi(n);
+
+        ArrayList<Long> phiDivisors = divisors(phi);
+        final int phiDivisorsSize = phiDivisors.size();
+
+        boolean firstPrimitiveRootFound = false;
+        /* i starts from 1 to ignore the first universal primitive root '1' 
+        refering to my own logic that 1^(any number) is congurent 1 modulo 'n'. 
+        However we don't consider it a primitive root */
+        for (int i = 1; !firstPrimitiveRootFound && i < relativlyPrimesSize; i++) {
+            final Long a = relativlyPrimes.get(i);
+            for (int j = 0; j < phiDivisorsSize; j++) {
+                final Long power = phiDivisors.get(j);
+                if (decToBinPowerToGetModulo(a, power, n) == 1) {
+                    if (power == phi) {
+                        result.add(mod(a, n));
+                        firstPrimitiveRootFound = true;
+                        /*if power == phi then this is already the last iteration
+                        and it doesn't need a break;*/
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (firstPrimitiveRootFound) {
+            long firstPrimitiveRoot = result.get(0);
+            //r^1 is already added so we start from m=2
+            for (long m = 2; m < phi; m++) {
+                if (isRelativePrime(m, phi)) {
+                    result.add(decToBinPowerToGetModulo(firstPrimitiveRoot, m, n));
+                }
+            }
+
+        }
+
+        return result;
     }
 
     public static long strPow(String s) throws NullPointerException, IllegalArgumentException, NumberFormatException {
