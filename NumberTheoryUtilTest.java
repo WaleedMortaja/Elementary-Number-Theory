@@ -276,16 +276,16 @@ public class NumberTheoryUtilTest {
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization() {
-        System.out.println("2 primeFacorization");
+    public void test2PrimeFactorization() {
+        System.out.println("primeFactorization");
         long number = -10L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
@@ -702,93 +702,93 @@ public class NumberTheoryUtilTest {
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void testPrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void testPrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -700L;
         boolean isPow1hidden = false;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7^1");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test2PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -700L;
         boolean isPow1hidden = true;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test3PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test3PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -10L;
         boolean isPow1hidden = true;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test4PrimeFacorization_long_boolean() {
-        System.out.println("primeFacorization");
+    public void test4PrimeFactorization_long_boolean() {
+        System.out.println("primeFactorization");
         long number = -10L;
         boolean isPow1hidden = false;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^1");
         expResult.add("5^1");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number, isPow1hidden);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number, isPow1hidden);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void testPrimeFacorization_long() {
-        System.out.println("primeFacorization");
+    public void testPrimeFactorization_long() {
+        System.out.println("primeFactorization");
         long number = -700L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2^2");
         expResult.add("5^2");
         expResult.add("7");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of primeFacorization method, of class NumberTheoryUtil.
+     * Test of primeFactorization method, of class NumberTheoryUtil.
      */
     @Test
-    public void test2PrimeFacorization_long() {
-        System.out.println("2 primeFacorization");
+    public void test2PrimeFactorization_long() {
+        System.out.println("2 primeFactorization");
         long number = -10L;
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add("2");
         expResult.add("5");
-        ArrayList<String> result = NumberTheoryUtil.primeFacorization(number);
+        ArrayList<String> result = NumberTheoryUtil.primeFactorization(number);
         assertEquals(expResult, result);
     }
 
