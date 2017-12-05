@@ -329,7 +329,7 @@ public final class NumberTheoryUtil {
         return result;
     }
 
-    public static ArrayList<String> primeFacorization(long number, boolean isPow1hidden) {
+    public static ArrayList<String> primeFactorization(long number, boolean isPow1hidden) {
         ArrayList<String> result = new ArrayList<>();
         /* no need for Math.abs(number) because primeDivisors method do it,
         and returns the primes which are always positive */
@@ -350,8 +350,8 @@ public final class NumberTheoryUtil {
         return result;
     }
 
-    public static ArrayList<String> primeFacorization(long number) {
-        return primeFacorization(number, true);
+    public static ArrayList<String> primeFactorization(long number) {
+        return primeFactorization(number, true);
     }
 
 // check n (mod n)
@@ -502,7 +502,7 @@ public final class NumberTheoryUtil {
     }
 
     public static long phi(long n) {
-        ArrayList<String> primeFacorization = primeFacorization(n, false);
+        ArrayList<String> primeFacorization = primeFactorization(n, false);
         long result = 1;
         for (int i = 0; i < primeFacorization.size(); i++) {
             final String primeWithPower = primeFacorization.get(i);
