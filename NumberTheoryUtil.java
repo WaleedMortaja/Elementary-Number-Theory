@@ -422,10 +422,6 @@ public class NumberTheoryUtil {
     }
 
     private static void chineseRemainderEquationCheck(ArrayList<Long[]> equations) throws IllegalArgumentException, NullPointerException {
-// null pointer will be called automatecailly if there is an error
-//        if (equations == null) {
-//            throw new IllegalArgumentException("null object for chinese equation");
-//        }
         final long equationsSize = equations.size();
         if (equationsSize == 0) {
             throw new IllegalArgumentException("Empty Array used as chinese equations.");
