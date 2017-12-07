@@ -3,6 +3,8 @@ package numberTheory;
 // tow char tau ='\u03C4';
 // sigma '\u03c3'
 // triple bar (may used as congurent)  ≡
+
+//remainder use check arrayLlength
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
  *
@@ -431,7 +433,7 @@ public class NumberTheoryUtil {
             throw new IllegalArgumentException("Empty Array used as chinese equations.");
         }
         for (int i = 0; i < equationsSize; i++) {
-            if (equations.get(i) == null || equations.get(i).length != 2) {
+            if (equations.get(i).length != 2) {
                 throw new IllegalArgumentException("Chinese equation needs only two integers as input.");
             }
             check_n_mod(equations.get(i)[1]);
@@ -653,7 +655,11 @@ public class NumberTheoryUtil {
         final int indexOfPoweSign = s.indexOf('^');
 
         if (indexOfPoweSign < 0) { //can also use indexOfPoweSign ==-1
-            throw new IllegalArgumentException("Cant find '^' char in the given string");
+            for (int i = 0; i < (s.length() / 2) + 1; i++) { //length/2 will be the loops needed to delete paranthese and the "+1" to parse the number
+                if (s.charAt(i) != '(' || s.charAt(s.length() - 1 - i) != ')') {
+                    return Long.parseLong(s.substring(i, s.length() - i));
+                }
+            }
         }
         final int sLength = s.length();
         long n1;
@@ -707,9 +713,10 @@ public class NumberTheoryUtil {
     private NumberTheoryUtil() {
     }
 
-    private <T> void checkArrayLength(int length, List<T> array) {
-        if (length != array.toArray().length) {
-            throw new IllegalArgumentException("Wrong Array length");
+    private <T> void checkArrayLength(int length, List<T> array) throws IllegalArgumentException {
+        final int arraySize = array.size();
+        if (length != arraySize) {
+            throw new IllegalArgumentException("Array length must be " + length + " , found array with length: " + arraySize);
         }
     }
 
