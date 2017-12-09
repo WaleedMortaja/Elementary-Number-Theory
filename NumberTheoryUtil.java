@@ -222,13 +222,13 @@ public class NumberTheoryUtil {
 
     }
 
-    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long otherSide) throws IllegalArgumentException {
+    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long constant) throws IllegalArgumentException {
         long[] result = new long[4];
         long[] gcdLinearCombination = gcdAsLinearCombination(xCoefficient, yCoefficient);
-        if (otherSide % gcdLinearCombination[0] != 0) {
-            throw new IllegalArgumentException("No, solution, the gcd does not divide the expression");
+        if (constant % gcdLinearCombination[0] != 0) {
+            throw new IllegalArgumentException("No, solution, the gcd(" + xCoefficient + "," + yCoefficient + ") = " + gcdLinearCombination[0] + " does not divide the constant: " + constant);
         }
-        long multiplyFactor = otherSide / gcdLinearCombination[0];
+        long multiplyFactor = constant / gcdLinearCombination[0];
 
         //multiply x0,y0 by multiplyFactor
         gcdLinearCombination[1] *= multiplyFactor;
