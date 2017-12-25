@@ -1,9 +1,6 @@
 package numberTheory;
-//number of primitive roots
 // Biginteger over load;
-// tow char tau ='\u03C4';
-// sigma '\u03c3'
-// triple bar (may used as congurent)  ≡
+
 /*
  * Copyright (C) 2017 Waleed Mortaja, Mahmoud Khalil
  *
@@ -147,7 +144,6 @@ public class NumberTheoryUtil {
 
     @SuppressWarnings("AssignmentToMethodParameter")
     public static ArrayList<long[]> gcdLines(long a, long b) throws IllegalArgumentException {
-        @SuppressWarnings("CollectionWithoutInitialCapacity")
         ArrayList<long[]> lines = new ArrayList<>(10);
         long[] arrayListline;
         do {
@@ -222,13 +218,13 @@ public class NumberTheoryUtil {
 
     }
 
-    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long otherSide) throws IllegalArgumentException {
+    public static long[] diophantineSolve(long xCoefficient, long yCoefficient, long constant) throws IllegalArgumentException {
         long[] result = new long[4];
         long[] gcdLinearCombination = gcdAsLinearCombination(xCoefficient, yCoefficient);
-        if (otherSide % gcdLinearCombination[0] != 0) {
-            throw new IllegalArgumentException("No, solution, the gcd does not divide the expression");
+        if (constant % gcdLinearCombination[0] != 0) {
+            throw new IllegalArgumentException("No, solution, the gcd(" + xCoefficient + "," + yCoefficient + ") = " + gcdLinearCombination[0] + " does not divide the constant: " + constant);
         }
-        long multiplyFactor = otherSide / gcdLinearCombination[0];
+        long multiplyFactor = constant / gcdLinearCombination[0];
 
         //multiply x0,y0 by multiplyFactor
         gcdLinearCombination[1] *= multiplyFactor;
@@ -408,7 +404,13 @@ public class NumberTheoryUtil {
         ArrayList<Long> congurences = new ArrayList<>(10);
         congurences.add(mod(a, n)); // for a^(2^0) = a^1 = a congurend a mod n
         for (int i = 1; i < powerLength; i++) {
-            congurences.add(mod((long) Math.pow(congurences.get(i - 1), 2), n));
+            final double result = Math.pow(congurences.get(i - 1), 2);
+            if (result > Long.MAX_VALUE) {
+                throw new IllegalArgumentException("The number is too large");
+            } else if (result < Long.MIN_VALUE) {
+                throw new IllegalArgumentException("The number is too small");
+            }
+            congurences.add(mod((long) result, n));
         }
         long result = 1;
         int lastIndexOfpower = powerLength - 1;
@@ -427,7 +429,7 @@ public class NumberTheoryUtil {
             throw new IllegalArgumentException("Empty Array used as chinese equations.");
         }
         for (int i = 0; i < equationsSize; i++) {
-            if (equations.get(i) == null || equations.get(i).length != 2) {
+            if (equations.get(i).length != 2) {
                 throw new IllegalArgumentException("Chinese equation needs only two integers as input.");
             }
             check_n_mod(equations.get(i)[1]);
@@ -442,8 +444,16 @@ public class NumberTheoryUtil {
         }
     }
 
-    //the input is  two integers (a) and (n) in the form x=a (mod n) for each equation
-    public static long chineseRemainderSolve(ArrayList<Long[]> equations) throws IllegalArgumentException {
+    /**
+     * The input is two integers (a) and (n) in the form x=a (mod n) for each
+     * equation
+     *
+     *
+     *
+     * @param equations
+     * @return long[] for chinses Remainder Solve
+     */
+    public static long[] chineseRemainderSolve(ArrayList<Long[]> equations) throws IllegalArgumentException {
         chineseRemainderEquationCheck(equations);
         long n = 1;
         ArrayList<Long> N = new ArrayList<>(10);
@@ -472,7 +482,7 @@ public class NumberTheoryUtil {
             result += equations.get(i)[0] * N.get(i) * x.get(i);
         }
         result = mod(result, n);
-        return result;
+        return new long[]{result, n};
     }
 
     public static long tau(long n) {
@@ -602,7 +612,7 @@ public class NumberTheoryUtil {
         return result;
     }
 
-    public static long numbOfPrimitiveRoots(long n) {
+    public static long numOfPrimitiveRoots(long n) {
         check_n_mod(n);
 
 //        ArrayList<Long> result = new ArrayList<>();
@@ -641,8 +651,13 @@ public class NumberTheoryUtil {
 
     public static long strPow(String s) throws NullPointerException, IllegalArgumentException, NumberFormatException {
         final int indexOfPoweSign = s.indexOf('^');
+
         if (indexOfPoweSign < 0) { //can also use indexOfPoweSign ==-1
-            throw new IllegalArgumentException("Cant find '^' char in the given string");
+            for (int i = 0; i < (s.length() / 2) + 1; i++) { //length/2 will be the loops needed to delete paranthese and the "+1" to parse the number
+                if (s.charAt(i) != '(' || s.charAt(s.length() - 1 - i) != ')') {
+                    return Long.parseLong(s.substring(i, s.length() - i));
+                }
+            }
         }
         final int sLength = s.length();
         long n1;
@@ -681,18 +696,45 @@ public class NumberTheoryUtil {
         } else {
             n2 = Long.parseLong(s.substring(indexOfPoweSign + 1, sLength));
         }
-        return (long) Math.pow(n1, n2);
+        final double result = Math.pow(n1, n2);
+        if (result > Long.MAX_VALUE) {
+            throw new IllegalArgumentException("The number is too large");
+        } else if (result < Long.MIN_VALUE) {
+            throw new IllegalArgumentException("The number is too small");
+        }
+        return (long) result;
+    }
+
+    /**
+     *
+     * @param plain_Text
+     * @return Encrypted_Text
+     */
+    public static char[] CaesarEncypt(String plain_Text) {
+        char[] plain_chars = plain_Text.toCharArray();
+        char[] encrpted_chars = new char[plain_chars.length];
+        for (int i = 0; i < plain_chars.length; i++) {
+            if ('A' <= plain_chars[i] && plain_chars[i] <= 'Z' - 3 || 'a' <= plain_chars[i] && plain_chars[i] <= 'z' - 3) {
+                encrpted_chars[i] = (char) (plain_chars[i] + 3);
+            } else if (plain_chars[i] >= 'x' && plain_chars[i] <= 'z' || plain_chars[i] >= 'X' && plain_chars[i] <= 'Z') {
+                encrpted_chars[i] = (char) (plain_chars[i] - 23);
+            } else {
+                encrpted_chars[i] = plain_chars[i];
+            }
+        }
+        return encrpted_chars;
     }
 
     /**
      * Don't let anyone instantiate this class.
      */
     private NumberTheoryUtil() {
-}
+    }
 
-    private <T> void checkArrayLength(int length, List<T> array) {
-        if (length != array.toArray().length) {
-            throw new IllegalArgumentException("Wrong Array length");
+    private <T> void checkArrayLength(int length, List<T> array) throws IllegalArgumentException {
+        final int arraySize = array.size();
+        if (length != arraySize) {
+            throw new IllegalArgumentException("Array length must be " + length + " , found array with length: " + arraySize);
         }
     }
 
