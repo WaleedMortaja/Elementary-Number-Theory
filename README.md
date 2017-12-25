@@ -1,2 +1,2 @@
-# Elementary-Number-Theory
-Some methods used in Elementary Number Theory
+# Elementary-Number-Theory-Program
+This -made in java- program contains alot of methods for NumberTheory subject , comes with fxml user interfaces & it's Open source
