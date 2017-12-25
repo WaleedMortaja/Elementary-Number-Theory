@@ -734,9 +734,9 @@ public class NumberTheoryUtil {
         char[] encrpted_chars = encrypted_Text.toCharArray();
         char[] plain_chars = new char[encrpted_chars.length];
         for (int i = 0; i < encrpted_chars.length; i++) {
-            if ('A' <= encrpted_chars[i] && encrpted_chars[i] <= 'Z' - 3 || 'a' <= encrpted_chars[i] && encrpted_chars[i] <= 'z' - 3) {
+            if ('D' <= encrpted_chars[i] && encrpted_chars[i] <= 'Z' || 'd' <= encrpted_chars[i] && encrpted_chars[i] <= 'z') {
                 plain_chars[i] = (char) (encrpted_chars[i] - 3);
-            } else if (encrpted_chars[i] >= 'x' && encrpted_chars[i] <= 'z' || encrpted_chars[i] >= 'X' && encrpted_chars[i] <= 'Z') {
+            } else if (encrpted_chars[i] <= 'c' && encrpted_chars[i] >= 'a' || encrpted_chars[i] <= 'C' && encrpted_chars[i] >= 'A') {
                 plain_chars[i] = (char) (encrpted_chars[i] + 23);
             } else {
                 plain_chars[i] = encrpted_chars[i];
