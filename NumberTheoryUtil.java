@@ -708,7 +708,7 @@ public class NumberTheoryUtil {
     /**
      *
      * @param plain_Text
-     * @return Encrypted_Text
+     * @return encrypted_Text
      */
     public static char[] CaesarEncypt(String plain_Text) {
         char[] plain_chars = plain_Text.toCharArray();
@@ -726,6 +726,28 @@ public class NumberTheoryUtil {
     }
 
     /**
+     *
+     * @param encrypted_Text
+     * @return plain_Text
+     */
+    public static char[] CaesarDecrypt(String encrypted_Text) {
+        char[] encrpted_chars = encrypted_Text.toCharArray();
+        char[] plain_chars = new char[encrpted_chars.length];
+        for (int i = 0; i < encrpted_chars.length; i++) {
+            if ('A' <= encrpted_chars[i] && encrpted_chars[i] <= 'Z' - 3 || 'a' <= encrpted_chars[i] && encrpted_chars[i] <= 'z' - 3) {
+                plain_chars[i] = (char) (encrpted_chars[i] - 3);
+            } else if (encrpted_chars[i] >= 'x' && encrpted_chars[i] <= 'z' || encrpted_chars[i] >= 'X' && encrpted_chars[i] <= 'Z') {
+                plain_chars[i] = (char) (encrpted_chars[i] + 23);
+            } else {
+                plain_chars[i] = encrpted_chars[i];
+            }
+        }
+
+        return plain_chars;
+
+    }
+
+    /**
      * Don't let anyone instantiate this class.
      */
     private NumberTheoryUtil() {
@@ -737,5 +759,4 @@ public class NumberTheoryUtil {
             throw new IllegalArgumentException("Array length must be " + length + " , found array with length: " + arraySize);
         }
     }
-
 }
