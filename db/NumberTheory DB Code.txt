@@ -1,19 +1,19 @@
 --NUMBER THEORY DATABASE
 create table Student (
 sid NUMBER(9) PRIMARY KEY,
-s_password VARCHAR2(30),
-name VARCHAR2(50)
+s_password VARCHAR2(30) NOT NULL,
+name VARCHAR2(50) NOT NULL
 );
 
 CREATE TABLE teacher(
 tid NUMBER(9) PRIMARY KEY,
-t_password VARCHAR2(30),
-name VARCHAR2(50)
+t_password VARCHAR2(30) NOT NULL,
+name VARCHAR2(50) NOT NULL
 );
 
 CREATE TABLE exam (
 name VARCHAR2(30),
-exam_date DATE NOT NULL,
+exam_date DATE,
 teacher_id NUMBER(9) REFERENCES teacher(tid),
 PRIMARY KEY (name,exam_date)
 );
@@ -22,15 +22,18 @@ CREATE TABLE student_exam(
 sid NUMBER(9) REFERENCES student(sid),
 ename VARCHAR2(30) ,
 exam_date DATE,
-grade NUMBER(3),
+grade NUMBER(3) NOT NULL,
 PRIMARY KEY(sid ,eid),
-FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date )
+FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date)
 );
 
 CREATE TABLE  exam_questions(
-q_txt VARCHAR2(200),
-q_answer VARCHAR2(200),
-q_number NUMBER(3),
-eid NUMBER(9) REFERENCES exam(eid)
+q_txt VARCHAR2(200) NOT NULL,
+q_answer VARCHAR2(200) NOT NULL,
+q_number NUMBER(3) NOT NULL,
+ename VARCHAR2(30) ,
+exam_date DATE,
+FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date )
 );
+
 
