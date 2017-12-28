@@ -12,16 +12,19 @@ name VARCHAR2(50)
 );
 
 CREATE TABLE exam (
-eid NUMBER(9) PRIMARY KEY,
-exam_date DATE DEFAULT SYSDATE,
-teacher_id NUMBER(9) REFERENCES teacher(tid)
+name VARCHAR2(30),
+exam_date DATE NOT NULL,
+teacher_id NUMBER(9) REFERENCES teacher(tid),
+PRIMARY KEY (name,exam_date)
 );
 
 CREATE TABLE student_exam(
 sid NUMBER(9) REFERENCES student(sid),
-eid NUMBER(9) REFERENCES exam(eid),
+ename VARCHAR2(30) ,
+exam_date DATE,
 grade NUMBER(3),
-PRIMARY KEY(sid ,eid)
+PRIMARY KEY(sid ,eid),
+FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date )
 );
 
 CREATE TABLE  exam_questions(
