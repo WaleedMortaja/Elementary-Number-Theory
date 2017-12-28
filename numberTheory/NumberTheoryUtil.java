@@ -360,7 +360,7 @@ public class NumberTheoryUtil {
         if (a < 0) {
             a = (a % n) + n;
             if (a == n) {
-                a -= n;
+                return 0;
             }
         }
         return a;
@@ -705,46 +705,46 @@ public class NumberTheoryUtil {
         return (long) result;
     }
 
+    private static char caesar(char ch, int key) {
+        int base = 0;
+        if ('A' <= ch && ch <= 'Z') {
+            base = 'A';
+        } else if ('a' <= ch && ch <= 'z') {
+            base = 'a';
+        } else {
+            return ch;
+        } // Not a letter
+        int offset = ch - base + key;
+        final int LETTERS = 26; // Number of letters in the Roman alphabet
+        if (offset > LETTERS) {
+            offset = offset - LETTERS;
+        } else if (offset < 0) {
+            offset = offset + LETTERS;
+        }
+        return (char) (base + offset);
+    }
+
     /**
      *
      * @param plain_Text
      * @return encrypted_Text
      */
-    public static char[] CaesarEncypt(String plain_Text) {
-        char[] plain_chars = plain_Text.toCharArray();
-        char[] encrpted_chars = new char[plain_chars.length];
-        for (int i = 0; i < plain_chars.length; i++) {
-            if ('A' <= plain_chars[i] && plain_chars[i] <= 'Z' - 3 || 'a' <= plain_chars[i] && plain_chars[i] <= 'z' - 3) {
-                encrpted_chars[i] = (char) (plain_chars[i] + 3);
-            } else if (plain_chars[i] >= 'x' && plain_chars[i] <= 'z' || plain_chars[i] >= 'X' && plain_chars[i] <= 'Z') {
-                encrpted_chars[i] = (char) (plain_chars[i] - 23);
-            } else {
-                encrpted_chars[i] = plain_chars[i];
-            }
+    public static String caesarEncypt(String plain_Text) {
+        int DEFAULT_ENC_KEY = 3;
+        String result = "";
+        for (char ch : plain_Text.toCharArray()) {
+            result += caesar(ch, DEFAULT_ENC_KEY);
         }
-        return encrpted_chars;
+        return result;
     }
 
-    /**
-     *
-     * @param encrypted_Text
-     * @return plain_Text
-     */
-    public static char[] CaesarDecrypt(String encrypted_Text) {
-        char[] encrpted_chars = encrypted_Text.toCharArray();
-        char[] plain_chars = new char[encrpted_chars.length];
-        for (int i = 0; i < encrpted_chars.length; i++) {
-            if ('D' <= encrpted_chars[i] && encrpted_chars[i] <= 'Z' || 'd' <= encrpted_chars[i] && encrpted_chars[i] <= 'z') {
-                plain_chars[i] = (char) (encrpted_chars[i] - 3);
-            } else if (encrpted_chars[i] <= 'c' && encrpted_chars[i] >= 'a' || encrpted_chars[i] <= 'C' && encrpted_chars[i] >= 'A') {
-                plain_chars[i] = (char) (encrpted_chars[i] + 23);
-            } else {
-                plain_chars[i] = encrpted_chars[i];
-            }
+    public static String caesarDecrypt(String encrypted_Text) {
+        int DEFAULT_DEC_KEY = -3;
+        String result = "";
+        for (char ch : encrypted_Text.toCharArray()) {
+            result += caesar(ch, DEFAULT_DEC_KEY);
         }
-
-        return plain_chars;
-
+        return result;
     }
 
     /**
