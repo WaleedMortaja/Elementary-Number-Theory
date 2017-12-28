@@ -30,14 +30,14 @@ public class CaesarController implements Initializable {
     @FXML
     private void Encrypt_text(ActionEvent event) {
 
-        EncryptedText.setText(new String(numberTheory.NumberTheoryUtil.CaesarEncypt(plainText.getText())));
+        EncryptedText.setText(new String(numberTheory.NumberTheoryUtil.caesarEncypt(plainText.getText())));
 
     }
 
     @FXML
     private void Decrypt_text(ActionEvent event) {
 
-        plainText.setText(new String(numberTheory.NumberTheoryUtil.CaesarDecrypt(EncryptedText.getText())));
+        plainText.setText(new String(numberTheory.NumberTheoryUtil.caesarDecrypt(EncryptedText.getText())));
 
     }
 
