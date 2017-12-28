@@ -1,11 +1,13 @@
 --NUMBER THEORY DATABASE
 create table Student (
 sid NUMBER(9) PRIMARY KEY,
+s_password VARCHAR2(30),
 name VARCHAR2(50)
 );
 
 CREATE TABLE teacher(
 tid NUMBER(9) PRIMARY KEY,
+t_password VARCHAR2(30),
 name VARCHAR2(50)
 );
 
