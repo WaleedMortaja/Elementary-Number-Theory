@@ -23,8 +23,8 @@ sid NUMBER(9) REFERENCES student(sid),
 ename VARCHAR2(30) ,
 exam_date DATE,
 grade NUMBER(3) NOT NULL,
-PRIMARY KEY(sid ,eid),
-FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date)
+PRIMARY KEY(sid ,ename,exam_date),
+FOREIGN KEY (ename,exam_date ) REFERENCES exam (name,exam_date)
 );
 
 CREATE TABLE  exam_questions(
@@ -33,13 +33,13 @@ q_answer VARCHAR2(200) NOT NULL,
 q_number NUMBER(3) NOT NULL,
 ename VARCHAR2(30) ,
 exam_date DATE,
-FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date )
+FOREIGN KEY (ename,exam_date ) REFERENCES exam ( name,exam_date )
 );
 
 
 CREATE TABLE teacher_students(
 teacher_id NUMBER(9) REFERENCES teacher(tid),
 sid NUMBER(9) REFERENCES student(sid),
-year DATE
+year DATE,
 PRIMARY KEY ( teacher_id , sid , year)
 );
