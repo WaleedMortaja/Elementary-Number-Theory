@@ -41,7 +41,7 @@ CREATE TABLE teacher_students(
 teacher_id NUMBER(9) REFERENCES teacher(tid),
 sid NUMBER(9) REFERENCES student(sid),
 semester NUMBER(5),
-PRIMARY KEY ( teacher_id , sid , year)
+PRIMARY KEY ( teacher_id , sid , semester)
 );
 
 
@@ -53,8 +53,8 @@ PRIMARY KEY ( teacher_id , sid , year)
 insert into teacher values (30001 , '1' , 'Ahmed');
 insert into teacher values (30002 , '2' , 'Ali');
 
-insert into exam vaalues ('Quiz_1',sysdate,30001);
-insert into exam vaalues ('Quiz_2',sysdate,30002);
+insert into exam values ('Quiz_1',sysdate,30001);
+insert into exam values ('Quiz_2',sysdate,30002);
 
 insert into student values (10001 , '1' , 'Salem');
 insert into student values (10002 , '2' , 'Khaled');
