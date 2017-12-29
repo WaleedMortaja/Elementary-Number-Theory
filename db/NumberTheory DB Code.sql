@@ -1,12 +1,12 @@
 --NUMBER THEORY DATABASE
 create table student (
-sid NUMBER(9) PRIMARY KEY,
+sid NUMBER(5) PRIMARY KEY,
 s_password VARCHAR2(30) NOT NULL,
 name VARCHAR2(50) NOT NULL
 );
 
 CREATE TABLE teacher(
-tid NUMBER(9) PRIMARY KEY,
+tid NUMBER(5) PRIMARY KEY,
 t_password VARCHAR2(30) NOT NULL,
 name VARCHAR2(50) NOT NULL
 );
@@ -14,12 +14,12 @@ name VARCHAR2(50) NOT NULL
 CREATE TABLE exam (
 name VARCHAR2(30),
 exam_date DATE,
-teacher_id NUMBER(9) REFERENCES teacher(tid),
+teacher_id NUMBER(5) REFERENCES teacher(tid),
 PRIMARY KEY (name,exam_date)
 );
 
 CREATE TABLE student_exam(
-sid NUMBER(9) REFERENCES student(sid),
+sid NUMBER(5) REFERENCES student(sid),
 ename VARCHAR2(30) ,
 exam_date DATE,
 grade NUMBER(3) NOT NULL,
@@ -38,8 +38,8 @@ FOREIGN KEY (ename,exam_date ) REFERENCES exam ( name,exam_date )
 
 
 CREATE TABLE teacher_students(
-teacher_id NUMBER(9) REFERENCES teacher(tid),
-sid NUMBER(9) REFERENCES student(sid),
+teacher_id NUMBER(5) REFERENCES teacher(tid),
+sid NUMBER(5) REFERENCES student(sid),
 semester NUMBER(5),
 PRIMARY KEY ( teacher_id , sid , semester)
 );
