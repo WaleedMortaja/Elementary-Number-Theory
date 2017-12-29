@@ -37,3 +37,9 @@ FOREGIN KEY (ename,exam_date ) REFERENCES (ename,exam_date )
 );
 
 
+CREATE TABLE teacher_students(
+teacher_id NUMBER(9) REFERENCES teacher(tid),
+sid NUMBER(9) REFERENCES student(sid),
+year DATE
+PRIMARY KEY ( teacher_id , sid , year)
+);
