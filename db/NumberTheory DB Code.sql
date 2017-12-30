@@ -41,7 +41,7 @@ CREATE TABLE teacher_students(
 tid NUMBER(5) REFERENCES teacher(tid),
 sid NUMBER(5) REFERENCES student(sid),
 study_year NUMBER(4),
-PRIMARY KEY ( teacher_id , sid , study_year)
+PRIMARY KEY ( tid , sid , study_year)
 );
 
 
