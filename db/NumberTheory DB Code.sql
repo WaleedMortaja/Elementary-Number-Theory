@@ -62,8 +62,8 @@ insert into exam values ('Mid term',date '2018-01-04',30002);
 insert into student values (10001 , '1' , 'Salem');
 insert into student values (10002 , '2' , 'Khaled');
 
-insert into teacher_students values (10001, 2017);
-insert into teacher_students values (10002, 2016);
-insert into teacher_students values (10002, 2017);
-insert into teacher_students values (10001, 2017);
+insert into teacher_students values (10001, 2016,30001);
+insert into teacher_students values (10002, 2016,30001);
+insert into teacher_students values (10001, 2017,30001);
+insert into teacher_students values (10002, 2017,30002);
 
