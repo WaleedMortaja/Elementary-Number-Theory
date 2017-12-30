@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class DataHandler {
@@ -21,31 +23,49 @@ public class DataHandler {
         this.conn = ds.getConnection();
     }
 
-    public final ResultSet getAllExams() throws SQLException {
+    //still under construction
+    public final ArrayList<String[]> getAvailableExams(int sid) throws SQLException {
         Statement stmt;
         ResultSet rset;
         String query;
+        ArrayList<String[]> result = null;
 
         this.getDBConnection();
         stmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        query = "SELECT * FROM exam ORDER BY exam_date";
+        
+        query = "SELECT t.name, e.name , e.exam_date FROM teacher t , exam e ,teacher_students ts "
+                + "where ts.sid =" + sid
+                + "and ts.study_year = (select extract(year from e.exam_date) from exam e )"
+                + "and ts.tid=t.tid"
+                + "and e.tid = t.tid"
+                + "ORDER BY exam_date DESC";
+
         rset = stmt.executeQuery(query);
-        return rset;
+        final int numOfResultColoumn = 3;
+        while (rset.next()) {
+            result.add(new String[numOfResultColoumn]);
+            String row[] = result.get(result.size());
+            for (int i = 0; i < row.length; i++) {
+                row[i] = rset.getString(i);
+            }
+        }
+        return result;
     }
 
-    public final boolean login(String id, String password) throws SQLException {
+    public final boolean login(int id, String password) throws SQLException {
         Statement stmt;
         ResultSet rset;
         String query;
-        
+
         this.getDBConnection();
         stmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-        switch (id.charAt(0)) {
-            case '1':
+        final int numOfIdDigits = 5;
+        switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
+            case 1:
                 query = "SELECT s_password FROM student where sid =" + id;
                 break;
-            case '3':
+            case 3:
                 query = "SELECT t_password FROM teacher where tid =" + id;
                 break;
             default:
