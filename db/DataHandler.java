@@ -5,12 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class DataHandler {
 
-    private String jdbcUrl = "jdbc:oracle:thin:nt/nt@localhost:1521:xe";
+    private final String jdbcUrl = "jdbc:oracle:thin:nt/nt@localhost:1521:xe";
     private Connection conn;
 
     public DataHandler() {
@@ -28,25 +27,28 @@ public class DataHandler {
         Statement stmt;
         ResultSet rset;
         String query;
-        ArrayList<String[]> result = null;
+        ArrayList<String[]> result = new ArrayList<>();
 
         this.getDBConnection();
         stmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        
-        query = "SELECT t.name, e.name , e.exam_date FROM teacher t , exam e ,teacher_students ts "
-                + "where ts.sid =" + sid
-                + "and ts.study_year = (select extract(year from e.exam_date) from exam e )"
-                + "and ts.tid=t.tid"
-                + "and e.tid = t.tid"
-                + "ORDER BY exam_date DESC";
 
+        query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" FROM teacher t , exam e ,teacher_students ts "
+                + "where ts.sid =" + sid
+                + "and ts.study_year = (select extract(year from e.exam_date) from dual)"
+                + "and ts.tid=t.tid "
+                + "and e.tid = t.tid "
+                + "ORDER BY exam_date DESC";
+        
         rset = stmt.executeQuery(query);
+        rset.next();
+        System.out.println(rset.getString(1));
+        rset.previous();
         final int numOfResultColoumn = 3;
         while (rset.next()) {
             result.add(new String[numOfResultColoumn]);
-            String row[] = result.get(result.size());
+            String row[] = result.get(result.size() - 1);
             for (int i = 0; i < row.length; i++) {
-                row[i] = rset.getString(i);
+                row[i] = rset.getString(i + 1); //getString-method index starts from 1
             }
         }
         return result;
