@@ -14,7 +14,7 @@ name VARCHAR2(50) NOT NULL
 CREATE TABLE exam (
 name VARCHAR2(30),
 exam_date DATE,
-teacher_id NUMBER(5) REFERENCES teacher(tid),
+tid NUMBER(5) REFERENCES teacher(tid),
 PRIMARY KEY (name,exam_date)
 );
 
