@@ -40,10 +40,10 @@ FOREIGN KEY (ename,exam_date ,tid) REFERENCES exam ( name,exam_date ,tid)
 
 
 CREATE TABLE teacher_students(
-tid NUMBER(5) REFERENCES teacher(tid),
 sid NUMBER(5) REFERENCES student(sid),
 study_year NUMBER(4),
-PRIMARY KEY ( tid , sid , study_year)
+tid NUMBER(5) REFERENCES teacher(tid) NOT NULL,
+PRIMARY KEY ( sid , study_year)
 );
 
 
@@ -57,6 +57,7 @@ insert into teacher values (30002 , '2' , 'Ali');
 
 insert into exam values ('Quiz_1',sysdate,30001);
 insert into exam values ('Quiz_2',sysdate,30002);
+insert into exam values ('Mid term',date '04-01-2018',30002);
 
 insert into student values (10001 , '1' , 'Salem');
 insert into student values (10002 , '2' , 'Khaled');
