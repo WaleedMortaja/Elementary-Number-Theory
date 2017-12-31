@@ -18,7 +18,7 @@ tid NUMBER(5) REFERENCES teacher(tid),
 PRIMARY KEY (name,exam_date,tid)
 );
 
-CREATE TABLE student_exam(
+CREATE TABLE student_exams(
 sid NUMBER(5) REFERENCES student(sid),
 ename VARCHAR2(30) ,
 exam_date DATE,
@@ -56,6 +56,7 @@ insert into teacher values (30001 , '1' , 'Ahmed');
 insert into teacher values (30002 , '2' , 'Ali');
 
 insert into exam values ('Quiz_1',date'2016-12-30',30001);
+insert into exam values ('Quiz_1',date'2017-12-30',30001);
 insert into exam values ('Quiz_2',date'2017-11-24',30001);
 insert into exam values ('Final',date'2017-12-31',30001);
 insert into exam values ('Quiz_1',sysdate,30002);
@@ -69,4 +70,4 @@ insert into teacher_students values (10002, 2016,30001);
 insert into teacher_students values (10001, 2017,30001);
 insert into teacher_students values (10002, 2017,30002);
 
-insert into 
+insert into student_exams values (10001,'Quiz_1',date'2017-12-30',30001,87);
