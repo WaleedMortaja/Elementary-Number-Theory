@@ -55,9 +55,11 @@ PRIMARY KEY ( sid , study_year)
 insert into teacher values (30001 , '1' , 'Ahmed');
 insert into teacher values (30002 , '2' , 'Ali');
 
-insert into exam values ('Quiz_1',sysdate,30001);
-insert into exam values ('Quiz_2',sysdate,30002);
-insert into exam values ('Mid term',date '2018-01-04',30002);
+insert into exam values ('Quiz_1',date'2016-12-30',30001);
+insert into exam values ('Quiz_2',date'2017-11-24',30001);
+insert into exam values ('Final',date'2017-12-31',30001);
+insert into exam values ('Quiz_1',sysdate,30002);
+insert into exam values ('Midterm',date '2018-01-04',30002);
 
 insert into student values (10001 , '1' , 'Salem');
 insert into student values (10002 , '2' , 'Khaled');
@@ -67,3 +69,4 @@ insert into teacher_students values (10002, 2016,30001);
 insert into teacher_students values (10001, 2017,30001);
 insert into teacher_students values (10002, 2017,30002);
 
+insert into 
