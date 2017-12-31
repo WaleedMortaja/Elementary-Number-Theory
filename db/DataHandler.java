@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -78,7 +77,7 @@ public class DataHandler {
         ps.setString(2, password);
         rset = ps.executeQuery();
 
-        boolean authenticated = rset.next();
+        boolean authenticated = rset.next(); //if there is a result then the username has the correct given password
 
         if (rset != null) {
             rset.close();
