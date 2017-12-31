@@ -31,16 +31,19 @@ public class DataHandler {
         ArrayList<String[]> result = new ArrayList<>();
 
         this.getDBConnection();
-
+ //some how reject the graded exams
         query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" FROM teacher t , exam e ,teacher_students ts "
                 + "where ts.sid =?"
-                + "and ts.study_year = (select extract(year from e.exam_date) from dual)"
+                + "and ts.study_year = extract(year from e.exam_date)"
+                + "and extract (year from sysdate) <= extract(year from e.exam_date)"
                 + "and ts.tid=t.tid "
                 + "and e.tid = t.tid "
-                + "ORDER BY exam_date DESC";
+                +" and exist (select 1 from student_exams se where se.sid=? and se.ename=e.name, se.exam_date = e.exam_date,se.tid = e.tid ) "
+                + "ORDER BY e.exam_date";
 
         ps = this.conn.prepareStatement(query);
         ps.setInt(1, sid);
+        ps.setInt(2, sid);
         rset = ps.executeQuery();
 
         final int numOfResultColoumn = 3;
@@ -82,8 +85,8 @@ public class DataHandler {
         ps.setString(2, password);
         rset = ps.executeQuery();
 
-        boolean authenticated= rset.next();
-        
+        boolean authenticated = rset.next();
+
         if (rset != null) {
             rset.close();
         }
