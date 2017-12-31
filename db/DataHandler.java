@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class DataHandler {
@@ -12,27 +11,29 @@ public class DataHandler {
     private final String jdbcUrl = "jdbc:oracle:thin:nt/nt@localhost:1521:xe";
     private Connection conn;
 
-    public DataHandler() {
+    public DataHandler() throws SQLException {
+        this.getDBConnection();
     }
 
-    public void getDBConnection() throws SQLException {
+    public final void getDBConnection() throws SQLException {
         OracleDataSource ds;
         ds = new OracleDataSource();
         ds.setURL(this.jdbcUrl);
         this.conn = ds.getConnection();
     }
 
-   /**
-    * Get the not graded exams of the student this year
-    * @param sid of the student
-    * @return 3 coloumns which are: Teacher name , Exam name, Exam date
-    * @throws SQLException 
-    */
+    /**
+     * Get the not graded exams of the student this year
+     *
+     * @param sid of the student
+     * @return 3 coloumns which are: Teacher name , Exam name, Exam date
+     * @throws SQLException
+     */
     public final ResultSet getAvailableExams(int sid) throws SQLException {
         PreparedStatement ps;
         ResultSet rset;
         String query;
-       
+
         this.getDBConnection();
 
         query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" FROM teacher t , exam e ,teacher_students ts "
@@ -48,9 +49,7 @@ public class DataHandler {
         ps.setInt(1, sid);
         ps.setInt(2, sid);
         rset = ps.executeQuery();
-        
-        ps.close();
-        conn.close();
+
         return rset;
     }
 
@@ -89,13 +88,11 @@ public class DataHandler {
         return authenticated;
     }
 
-    public ArrayList<String[]> getStudentGrades(int sid) throws SQLException {
-        ArrayList<String[]> result = new ArrayList<>();
-        
-        String query = "";
-        PreparedStatement ps = conn.prepareStatement(query);
-        
-        
-        return result;
-    }
+//    public ResultSet getStudentGrades(int sid) throws SQLException {
+//        String query = "";
+//        PreparedStatement ps = conn.prepareStatement(query);
+//        
+//        
+//        return result;
+//    }
 }
