@@ -59,7 +59,7 @@ insert into exam values ('Quiz_1',date'2016-12-30',30001);
 insert into exam values ('Quiz_1',date'2017-12-30',30001);
 insert into exam values ('Quiz_2',date'2017-11-24',30001);
 insert into exam values ('Final',date'2017-12-31',30001);
-insert into exam values ('Quiz_1',sysdate,30002);
+insert into exam values ('Quiz_1',date '2017-10-11',30002);
 insert into exam values ('Midterm',date '2018-01-04',30002);
 
 insert into student values (10001 , '1' , 'Salem');
@@ -71,3 +71,6 @@ insert into teacher_students values (10001, 2017,30001);
 insert into teacher_students values (10002, 2017,30002);
 
 insert into student_exams values (10001,'Quiz_1',date'2017-12-30',30001,87);
+
+
+commit;
