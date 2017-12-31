@@ -51,6 +51,10 @@ public class DataHandler {
                 row[i] = rset.getString(i + 1); //getString-method index starts from 1
             }
         }
+        if (rset != null)
+            rset.close();
+        stmt.close();
+        conn.close();
         return result;
     }
 
@@ -76,6 +80,13 @@ public class DataHandler {
 
         rset = stmt.executeQuery(query);
         rset.next();
-        return rset.getString(1).equals(password);
+        final String correctPassword = rset.getString(1);
+        
+         if (rset != null)
+            rset.close();
+        stmt.close();
+        conn.close();
+        
+        return correctPassword.equals(password);
     }
 }
