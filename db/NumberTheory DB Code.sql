@@ -14,7 +14,7 @@ name VARCHAR2(50) NOT NULL
 CREATE TABLE exam (
 name VARCHAR2(30),
 exam_date DATE,
-tid NUMBER(5) REFERENCES teacher(tid),
+tid NUMBER(5) REFERENCES teacher(tid) NOT NULL,
 PRIMARY KEY (name,exam_date,tid)
 );
 
@@ -30,7 +30,6 @@ FOREIGN KEY (ename,exam_date,tid ) REFERENCES exam (name,exam_date,tid)
 
 CREATE TABLE  exam_questions(
 q_txt VARCHAR2(200) NOT NULL,
-q_answer VARCHAR2(200) NOT NULL,
 q_number NUMBER(3) NOT NULL,
 ename VARCHAR2(30) ,
 exam_date DATE,
