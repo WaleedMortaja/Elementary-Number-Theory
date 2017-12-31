@@ -20,10 +20,10 @@ PRIMARY KEY (name,exam_date,tid)
 );
 
 CREATE TABLE student_exams(
-sid NUMBER(5) REFERENCES student(sid),
-ename VARCHAR2(30) ,
-exam_date DATE,
-tid NUMBER(5),
+sid NUMBER(5) REFERENCES student(sid) NOT NULL,
+ename VARCHAR2(30) NOT NULL,
+exam_date DATE NOT NULL,
+tid NUMBER(5) NOT NULL,
 grade NUMBER(3) NOT NULL,
 PRIMARY KEY(sid ,ename,exam_date),
 FOREIGN KEY (ename,exam_date,tid ) REFERENCES exam (name,exam_date,tid)
