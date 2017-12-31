@@ -40,8 +40,8 @@ FOREIGN KEY (ename,exam_date ,tid) REFERENCES exam ( name,exam_date ,tid)
 
 
 CREATE TABLE teacher_students(
-sid NUMBER(5) REFERENCES student(sid),
-study_year NUMBER(4),
+sid NUMBER(5) REFERENCES student(sid) NOT NULL,
+study_year NUMBER(4) NOT NULL,
 tid NUMBER(5) REFERENCES teacher(tid) NOT NULL,
 PRIMARY KEY ( sid , study_year)
 );
