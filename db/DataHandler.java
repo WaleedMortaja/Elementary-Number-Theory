@@ -1,6 +1,7 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,25 +25,24 @@ public class DataHandler {
 
     //still under construction
     public final ArrayList<String[]> getAvailableExams(int sid) throws SQLException {
-        Statement stmt;
+        PreparedStatement ps;
         ResultSet rset;
         String query;
         ArrayList<String[]> result = new ArrayList<>();
 
         this.getDBConnection();
-        stmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
         query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" FROM teacher t , exam e ,teacher_students ts "
-                + "where ts.sid =" + sid
+                + "where ts.sid =?"
                 + "and ts.study_year = (select extract(year from e.exam_date) from dual)"
                 + "and ts.tid=t.tid "
                 + "and e.tid = t.tid "
                 + "ORDER BY exam_date DESC";
-        
-        rset = stmt.executeQuery(query);
-        rset.next();
-        System.out.println(rset.getString(1));
-        rset.previous();
+
+        ps = this.conn.prepareStatement(query);
+        ps.setInt(1, sid);
+        rset = ps.executeQuery();
+
         final int numOfResultColoumn = 3;
         while (rset.next()) {
             result.add(new String[numOfResultColoumn]);
@@ -51,42 +51,46 @@ public class DataHandler {
                 row[i] = rset.getString(i + 1); //getString-method index starts from 1
             }
         }
-        if (rset != null)
+        if (rset != null) {
             rset.close();
-        stmt.close();
+        }
+        ps.close();
         conn.close();
         return result;
     }
 
-    public final boolean login(int id, String password) throws SQLException {
-        Statement stmt;
+    public final boolean login(int id, String password) throws SQLException, IllegalArgumentException {
+        PreparedStatement ps;
         ResultSet rset;
         String query;
-
-        this.getDBConnection();
-        stmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
         final int numOfIdDigits = 5;
         switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
             case 1:
-                query = "SELECT s_password FROM student where sid =" + id;
+                query = "SELECT s_password FROM student where sid =? and s_password=?";
                 break;
             case 3:
-                query = "SELECT t_password FROM teacher where tid =" + id;
+                query = "SELECT t_password FROM teacher where tid =? and t_password=?";
                 break;
             default:
-                query = "";
+                throw new IllegalArgumentException("Invalid id");
         }
 
-        rset = stmt.executeQuery(query);
-        rset.next();
-        final String correctPassword = rset.getString(1);
+        this.getDBConnection();
+        ps = this.conn.prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setString(2, password);
+        rset = ps.executeQuery();
+
+        boolean authenticated= rset.next();
         
-         if (rset != null)
+        if (rset != null) {
             rset.close();
-        stmt.close();
+        }
+
+        ps.close();
         conn.close();
-        
-        return correctPassword.equals(password);
+
+        return authenticated;
     }
 }
