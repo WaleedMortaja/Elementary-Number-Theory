@@ -26,28 +26,28 @@ public class DataHandler {
      * Get the exams of the student in this year. If the students has not
      * applied for an exam, then the grade is returned as null.
      *
-     * @param sid of the student
+     * @param student_id of the student
      * @return 4 coloumns which are: Teacher name , Exam name, Exam date , Grade
      * @throws SQLException
      */
-    public final ResultSet getExams(int sid) throws SQLException {
+    public final ResultSet getExams(int student_id) throws SQLException {
         PreparedStatement ps;
         ResultSet rset;
         String query;
 
-        query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" , "
-                + "(select se.grade from student_exams se where se.sid=? and se.ename = e.name and se.exam_date = e.exam_date and se.tid = e.tid) AS \"Grade\" "
+        query = "SELECT t.teacher_name AS \"Teacher name\", e.exam_name AS \"Exam name\", e.exam_date AS \"Exam date\" , "
+                + "(select se.grade from student_exams se where se.student_id=? and se.exam_name = e.exam_name and se.exam_date = e.exam_date and se.teacher_id = e.teacher_id) AS \"Grade\" "
                 + "FROM teacher t , exam e ,teacher_students ts "
-                + "where ts.sid =? "
+                + "where ts.student_id =? "
                 + "and ts.study_year = extract(year from e.exam_date) "
                 + "and extract (year from sysdate) <= extract(year from e.exam_date) "
-                + "and ts.tid=t.tid "
-                + "and e.tid = t.tid "
+                + "and ts.teacher_id=t.teacher_id "
+                + "and e.teacher_id = t.teacher_id "
                 + "ORDER BY e.exam_date ";
 
         ps = this.conn.prepareStatement(query);
-        ps.setInt(1, sid);
-        ps.setInt(2, sid);
+        ps.setInt(1, student_id);
+        ps.setInt(2, student_id);
         rset = ps.executeQuery();
 
         // cannt close the PreparedStatement because it will affect ResultSet
@@ -62,10 +62,10 @@ public class DataHandler {
         final int numOfIdDigits = 5;
         switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
             case 1:
-                query = "SELECT s_password FROM student where sid =? and s_password=?";
+                query = "SELECT student_password FROM student where student_id =? and student_password=?";
                 break;
             case 3:
-                query = "SELECT t_password FROM teacher where tid =? and t_password=?";
+                query = "SELECT teacher_password FROM teacher where teacher_id =? and teacher_password=?";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid id");
@@ -87,6 +87,13 @@ public class DataHandler {
         return authenticated;
     }
 
+    
+//    public void addExam(String exam_name,
+//exam_date DATE,
+//teacher_id NUMBER(5) REFERENCES teacher(teacher_id) NOT NULL,
+//duration NUMBER(3) NOT NULL,){
+//        //insert into exam values ('Quiz_1',date '2017-12-30',30001  , 10);
+//    }
     public final void closeDBConnection() throws SQLException {
         this.conn.close();
     }
