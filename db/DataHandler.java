@@ -23,26 +23,28 @@ public class DataHandler {
     }
 
     /**
-     * Get the not graded exams of the student this year
+     * Get the exams of the student in this year. If the students has not
+     * applied for an exam, then the grade is returned as null.
      *
      * @param sid of the student
-     * @return 3 coloumns which are: Teacher name , Exam name, Exam date
+     * @return 4 coloumns which are: Teacher name , Exam name, Exam date , Grade
      * @throws SQLException
      */
-    public final ResultSet getAvailableExams(int sid) throws SQLException {
+    public final ResultSet getExams(int sid) throws SQLException {
         PreparedStatement ps;
         ResultSet rset;
         String query;
 
         this.getDBConnection();
 
-        query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" FROM teacher t , exam e ,teacher_students ts "
+        query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" , "
+                + "(select se.grade from student_exams se where se.sid=? and se.ename = e.name and se.exam_date = e.exam_date and se.tid = e.tid) AS \"Grade\" "
+                + "FROM teacher t , exam e ,teacher_students ts "
                 + "where ts.sid =? "
                 + "and ts.study_year = extract(year from e.exam_date) "
                 + "and extract (year from sysdate) <= extract(year from e.exam_date) "
                 + "and ts.tid=t.tid "
                 + "and e.tid = t.tid "
-                + " and not exists (select 1 from student_exams se where se.sid=? and se.ename=e.name and se.exam_date = e.exam_date and se.tid = e.tid ) "
                 + "ORDER BY e.exam_date ";
 
         ps = this.conn.prepareStatement(query);
