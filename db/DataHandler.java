@@ -15,6 +15,28 @@ public class DataHandler {
         this.getDBConnection();
     }
 
+    /**
+     * Verify that the given id is a student id.
+     * @param student_id the id of the student
+     * @throws IllegalAccessException if the id is an Invalid student id
+     */
+    private void checkStudentId(int student_id) throws IllegalAccessException {
+        if (!(student_id > 10000 && student_id < 20000)) {
+            throw new IllegalAccessException("Invalid student id");
+        }
+    }
+
+    /**
+     * Verify that the given id is a teacher id.
+     * @param teacher_id the id of the teacher
+     * @throws IllegalAccessException if the id is an Invalid teacher id
+     */
+    private void checkTeacherId(int teacher_id) throws IllegalAccessException {
+        if (!(teacher_id > 30000 && teacher_id < 40000)) {
+            throw new IllegalAccessException("Invalid teacher id");
+        }
+    }
+
     public final void getDBConnection() throws SQLException {
         OracleDataSource ds;
         ds = new OracleDataSource();
@@ -32,9 +54,7 @@ public class DataHandler {
      * @throws java.lang.IllegalAccessException if teacher_id is invalid.
      */
     public final ResultSet getStudentExams(int student_id) throws SQLException, IllegalAccessException {
-        if (!(student_id > 10000 && student_id < 20000)) {
-            throw new IllegalAccessException("Invalid student id");
-        }
+        this.checkStudentId(student_id);
 
         PreparedStatement ps;
         ResultSet rset;
@@ -96,9 +116,7 @@ public class DataHandler {
      * @throws java.sql.SQLException if a database access error occurs
      */
     public void addExam(String exam_name, String exam_date, int teacher_id, int duration) throws IllegalAccessException, SQLException {
-        if (!(teacher_id > 30000 && teacher_id < 40000)) {
-            throw new IllegalAccessException("Invalid teacher id");
-        }
+        this.checkTeacherId(teacher_id);
 
         String query = "insert into exam values (?,to_date(?,'dd-mm-yyyy'),?, ?)";
         try (PreparedStatement ps = this.conn.prepareStatement(query)) {
