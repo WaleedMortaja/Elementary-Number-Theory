@@ -50,6 +50,7 @@ public class DataHandler {
         ps.setInt(2, sid);
         rset = ps.executeQuery();
 
+        // cannt close the PreparedStatement because it will affect ResultSet
         return rset;
     }
 
@@ -70,7 +71,6 @@ public class DataHandler {
                 throw new IllegalArgumentException("Invalid id");
         }
 
-        this.getDBConnection();
         ps = this.conn.prepareStatement(query);
         ps.setInt(1, id);
         ps.setString(2, password);
