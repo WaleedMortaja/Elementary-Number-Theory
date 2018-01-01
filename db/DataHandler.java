@@ -29,8 +29,13 @@ public class DataHandler {
      * @param student_id of the student
      * @return 4 coloumns which are: Teacher name , Exam name, Exam date , Grade
      * @throws SQLException
+     * @throws java.lang.IllegalAccessException if teacher_id is invalid.
      */
-    public final ResultSet getExams(int student_id) throws SQLException {
+    public final ResultSet getStudentExams(int student_id) throws SQLException, IllegalAccessException {
+        if (!(student_id >10000 && student_id<20000)){
+            throw new IllegalAccessException("Invalid student id");  
+        }
+        
         PreparedStatement ps;
         ResultSet rset;
         String query;
@@ -99,7 +104,7 @@ public class DataHandler {
     public void addExam(String exam_name, String exam_date, int teacher_id, int duration) throws IllegalAccessException, SQLException {
         if (!(teacher_id > 30000 && teacher_id < 40000))
         {
-            throw new IllegalAccessException("Invalid teacher_id");
+            throw new IllegalAccessException("Invalid teacher id");
         }
         
         String query = "insert into exam values (?,to_date(?,'dd-mm-yyyy'),?, ?)";
