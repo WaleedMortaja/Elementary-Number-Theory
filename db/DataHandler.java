@@ -11,6 +11,12 @@ public class DataHandler {
     private final String jdbcUrl = "jdbc:oracle:thin:nt/nt@localhost:1521:xe";
     private Connection conn;
 
+    /**
+     * Construct new Object of DataHandler class, and automatically connect to
+     * the database
+     *
+     * @throws SQLException
+     */
     public DataHandler() throws SQLException {
         this.getDBConnection();
     }
@@ -51,6 +57,15 @@ public class DataHandler {
         }
     }
 
+    /**
+     * try to login to the database as a user (teacher or student)
+     * 
+     * @param id the id of the user
+     * @param password the passord of the user
+     * @return true if the password is correct for the given id, false otherise.
+     * @throws SQLException if a database access error occurs
+     * @throws IllegalArgumentException if the id is an Invalid id.
+     */
     public final boolean login(int id, String password) throws SQLException, IllegalArgumentException {
         String query;
         final int numOfIdDigits = 5;
@@ -136,6 +151,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Disconnect from the database
+     * 
+     * @throws SQLException if a database access error occurs.
+     */
     public final void closeDBConnection() throws SQLException {
         this.conn.close();
     }
