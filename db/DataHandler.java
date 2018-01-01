@@ -94,4 +94,8 @@ public class DataHandler {
 //        
 //        return result;
 //    }
+    public final void closeDBConnection() throws SQLException {
+        this.conn.close();
+    }
+
 }
