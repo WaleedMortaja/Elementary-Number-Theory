@@ -87,8 +87,30 @@ public class DataHandler {
         return authenticated;
     }
 
-    public void addExam(String exam_name, String exam_date, int teacher_id, int duration) {
-        //insert into exam values ('Quiz_1',date '2017-12-30',30001  , 10);
+    /**
+     * Add a new exam.
+     *
+     * @param exam_name the name of the exam.
+     * @param exam_date the date of the exam with the form dd-mm-yyyy.
+     * @param teacher_id the id of the teacher.
+     * @param duration the duaration of the exam.
+     * @throws java.lang.IllegalAccessException if teacher_id is invalid.
+     */
+    public void addExam(String exam_name, String exam_date, int teacher_id, int duration) throws IllegalAccessException, SQLException {
+        if (!(teacher_id > 30000 && teacher_id < 40000))
+        {
+            throw new IllegalAccessException("Invalid teacher_id");
+        }
+        
+        String query = "insert into exam values (?,to_date(?,'dd-mm-yyyy'),?, ?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, exam_name);
+        ps.setString(2, exam_date);
+        ps.setInt(3, teacher_id);
+        ps.setInt(4, duration);
+        
+        ps.execute();
+        ps.close();
     }
 
     public final void closeDBConnection() throws SQLException {
