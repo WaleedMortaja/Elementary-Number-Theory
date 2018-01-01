@@ -22,12 +22,12 @@ PRIMARY KEY (exam_name,exam_date,teacher_id)
 );
 
 CREATE TABLE student_exams(
-sid NUMBER(5) REFERENCES student(sid) NOT NULL,
+student_id NUMBER(5) REFERENCES student(student_id) NOT NULL,
 exam_name VARCHAR2(30) NOT NULL,
 exam_date DATE NOT NULL,
 teacher_id NUMBER(5) NOT NULL,
 grade NUMBER(3) NOT NULL,
-PRIMARY KEY(sid ,exam_name,exam_date),
+PRIMARY KEY(student_id ,exam_name,exam_date),
 FOREIGN KEY (exam_name,exam_date,teacher_id ) REFERENCES exam (exam_name,exam_date,teacher_id)
 );
 
@@ -42,10 +42,10 @@ FOREIGN KEY (exam_name,exam_date ,teacher_id) REFERENCES exam ( exam_name,exam_d
 
 
 CREATE TABLE teacher_students(
-sid NUMBER(5) REFERENCES student(sid) NOT NULL,
+student_id NUMBER(5) REFERENCES student(student_id) NOT NULL,
 study_year NUMBER(4) NOT NULL,
 teacher_id NUMBER(5) REFERENCES teacher(teacher_id) NOT NULL,
-PRIMARY KEY ( sid , study_year)
+PRIMARY KEY ( student_id , study_year)
 );
 
 
