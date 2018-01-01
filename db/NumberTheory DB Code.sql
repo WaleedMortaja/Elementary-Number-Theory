@@ -10,7 +10,7 @@ CREATE TABLE teacher(
 teacher_id NUMBER(5) PRIMARY KEY,
 teacher_password VARCHAR2(30) NOT NULL,
 teacher_name VARCHAR2(50) NOT NULL,
-CONSTRAINT stdn_id_chk CHECK (teacher_id >30000 and teacher_id<40000)
+CONSTRAINT tchr_id_chk CHECK (teacher_id >30000 and teacher_id<40000)
 );
 
 CREATE TABLE exam (
