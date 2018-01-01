@@ -35,8 +35,6 @@ public class DataHandler {
         ResultSet rset;
         String query;
 
-        this.getDBConnection();
-
         query = "SELECT t.name AS \"Teacher name\", e.name AS \"Exam name\", e.exam_date AS \"Exam date\" , "
                 + "(select se.grade from student_exams se where se.sid=? and se.ename = e.name and se.exam_date = e.exam_date and se.tid = e.tid) AS \"Grade\" "
                 + "FROM teacher t , exam e ,teacher_students ts "
@@ -85,7 +83,6 @@ public class DataHandler {
         }
 
         ps.close();
-        conn.close();
 
         return authenticated;
     }
