@@ -32,10 +32,10 @@ public class DataHandler {
      * @throws java.lang.IllegalAccessException if teacher_id is invalid.
      */
     public final ResultSet getStudentExams(int student_id) throws SQLException, IllegalAccessException {
-        if (!(student_id >10000 && student_id<20000)){
-            throw new IllegalAccessException("Invalid student id");  
+        if (!(student_id > 10000 && student_id < 20000)) {
+            throw new IllegalAccessException("Invalid student id");
         }
-        
+
         PreparedStatement ps;
         ResultSet rset;
         String query;
@@ -60,10 +60,7 @@ public class DataHandler {
     }
 
     public final boolean login(int id, String password) throws SQLException, IllegalArgumentException {
-        PreparedStatement ps;
-        ResultSet rset;
         String query;
-
         final int numOfIdDigits = 5;
         switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
             case 1:
@@ -76,20 +73,16 @@ public class DataHandler {
                 throw new IllegalArgumentException("Invalid id");
         }
 
-        ps = this.conn.prepareStatement(query);
-        ps.setInt(1, id);
-        ps.setString(2, password);
-        rset = ps.executeQuery();
+        try (PreparedStatement ps = this.conn.prepareStatement(query)) {
+            ResultSet rset;
+            ps.setInt(1, id);
+            ps.setString(2, password);
+            rset = ps.executeQuery();
 
-        boolean authenticated = rset.next(); //if there is a result then the username has the correct given password
-
-        if (rset != null) {
+            boolean authenticated = rset.next(); //if there is a result then the username has the correct given password
             rset.close();
+            return authenticated;
         }
-
-        ps.close();
-
-        return authenticated;
     }
 
     /**
@@ -100,22 +93,22 @@ public class DataHandler {
      * @param teacher_id the id of the teacher.
      * @param duration the duaration of the exam.
      * @throws java.lang.IllegalAccessException if teacher_id is invalid.
+     * @throws java.sql.SQLException if a database access error occurs
      */
     public void addExam(String exam_name, String exam_date, int teacher_id, int duration) throws IllegalAccessException, SQLException {
-        if (!(teacher_id > 30000 && teacher_id < 40000))
-        {
+        if (!(teacher_id > 30000 && teacher_id < 40000)) {
             throw new IllegalAccessException("Invalid teacher id");
         }
-        
+
         String query = "insert into exam values (?,to_date(?,'dd-mm-yyyy'),?, ?)";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, exam_name);
-        ps.setString(2, exam_date);
-        ps.setInt(3, teacher_id);
-        ps.setInt(4, duration);
-        
-        ps.execute();
-        ps.close();
+        try (PreparedStatement ps = this.conn.prepareStatement(query)) {
+            ps.setString(1, exam_name);
+            ps.setString(2, exam_date);
+            ps.setInt(3, teacher_id);
+            ps.setInt(4, duration);
+
+            ps.execute();
+        }
     }
 
     public final void closeDBConnection() throws SQLException {
