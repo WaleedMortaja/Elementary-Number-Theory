@@ -87,13 +87,10 @@ public class DataHandler {
         return authenticated;
     }
 
-    
-//    public void addExam(String exam_name,
-//exam_date DATE,
-//teacher_id NUMBER(5) REFERENCES teacher(teacher_id) NOT NULL,
-//duration NUMBER(3) NOT NULL,){
-//        //insert into exam values ('Quiz_1',date '2017-12-30',30001  , 10);
-//    }
+    public void addExam(String exam_name, String exam_date, int teacher_id, int duration) {
+        //insert into exam values ('Quiz_1',date '2017-12-30',30001  , 10);
+    }
+
     public final void closeDBConnection() throws SQLException {
         this.conn.close();
     }
