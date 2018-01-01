@@ -16,7 +16,20 @@ public class DataHandler {
     }
 
     /**
+     * Connect to the database.
+     *
+     * @throws SQLException if a database access error occurs.
+     */
+    public final void getDBConnection() throws SQLException {
+        OracleDataSource ds;
+        ds = new OracleDataSource();
+        ds.setURL(this.jdbcUrl);
+        this.conn = ds.getConnection();
+    }
+
+    /**
      * Verify that the given id is a student id.
+     *
      * @param student_id the id of the student
      * @throws IllegalAccessException if the id is an Invalid student id
      */
@@ -28,6 +41,7 @@ public class DataHandler {
 
     /**
      * Verify that the given id is a teacher id.
+     *
      * @param teacher_id the id of the teacher
      * @throws IllegalAccessException if the id is an Invalid teacher id
      */
@@ -37,11 +51,30 @@ public class DataHandler {
         }
     }
 
-    public final void getDBConnection() throws SQLException {
-        OracleDataSource ds;
-        ds = new OracleDataSource();
-        ds.setURL(this.jdbcUrl);
-        this.conn = ds.getConnection();
+    public final boolean login(int id, String password) throws SQLException, IllegalArgumentException {
+        String query;
+        final int numOfIdDigits = 5;
+        switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
+            case 1:
+                query = "SELECT null FROM student where student_id =? and student_password=?";
+                break;
+            case 3:
+                query = "SELECT null FROM teacher where teacher_id =? and teacher_password=?";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid id");
+        }
+
+        try (PreparedStatement ps = this.conn.prepareStatement(query)) {
+            ResultSet rset;
+            ps.setInt(1, id);
+            ps.setString(2, password);
+            rset = ps.executeQuery();
+
+            boolean authenticated = rset.next(); //if there is a result then the username has the correct given password
+            rset.close();
+            return authenticated;
+        }
     }
 
     /**
@@ -77,32 +110,6 @@ public class DataHandler {
 
         // cannt close the PreparedStatement because it will affect ResultSet
         return rset;
-    }
-
-    public final boolean login(int id, String password) throws SQLException, IllegalArgumentException {
-        String query;
-        final int numOfIdDigits = 5;
-        switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
-            case 1:
-                query = "SELECT null FROM student where student_id =? and student_password=?";
-                break;
-            case 3:
-                query = "SELECT null FROM teacher where teacher_id =? and teacher_password=?";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid id");
-        }
-
-        try (PreparedStatement ps = this.conn.prepareStatement(query)) {
-            ResultSet rset;
-            ps.setInt(1, id);
-            ps.setString(2, password);
-            rset = ps.executeQuery();
-
-            boolean authenticated = rset.next(); //if there is a result then the username has the correct given password
-            rset.close();
-            return authenticated;
-        }
     }
 
     /**
