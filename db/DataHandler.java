@@ -87,13 +87,6 @@ public class DataHandler {
         return authenticated;
     }
 
-//    public ResultSet getStudentGrades(int sid) throws SQLException {
-//        String query = "";
-//        PreparedStatement ps = conn.prepareStatement(query);
-//        
-//        
-//        return result;
-//    }
     public final void closeDBConnection() throws SQLException {
         this.conn.close();
     }
