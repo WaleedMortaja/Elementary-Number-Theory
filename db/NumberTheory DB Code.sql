@@ -1,48 +1,50 @@
 --NUMBER THEORY DATABASE
 create table student (
-sid NUMBER(5) PRIMARY KEY,
-s_password VARCHAR2(30) NOT NULL,
-name VARCHAR2(50) NOT NULL
+student_id NUMBER(5) PRIMARY KEY,
+student_password VARCHAR2(30) NOT NULL,
+student_name VARCHAR2(50) NOT NULL,
+CONSTRAINT stdn_id_chk CHECK (student_id >10000 and student_id<20000)
 );
 
 CREATE TABLE teacher(
-tid NUMBER(5) PRIMARY KEY,
-t_password VARCHAR2(30) NOT NULL,
-name VARCHAR2(50) NOT NULL
+teacher_id NUMBER(5) PRIMARY KEY,
+teacher_password VARCHAR2(30) NOT NULL,
+teacher_name VARCHAR2(50) NOT NULL,
+CONSTRAINT stdn_id_chk CHECK (teacher_id >30000 and teacher_id<40000)
 );
 
 CREATE TABLE exam (
-name VARCHAR2(30),
+exam_name VARCHAR2(30),
 exam_date DATE,
-tid NUMBER(5) REFERENCES teacher(tid) NOT NULL,
+teacher_id NUMBER(5) REFERENCES teacher(teacher_id) NOT NULL,
 duration NUMBER(3) NOT NULL,
-PRIMARY KEY (name,exam_date,tid)
+PRIMARY KEY (exam_name,exam_date,teacher_id)
 );
 
 CREATE TABLE student_exams(
 sid NUMBER(5) REFERENCES student(sid) NOT NULL,
-ename VARCHAR2(30) NOT NULL,
+exam_name VARCHAR2(30) NOT NULL,
 exam_date DATE NOT NULL,
-tid NUMBER(5) NOT NULL,
+teacher_id NUMBER(5) NOT NULL,
 grade NUMBER(3) NOT NULL,
-PRIMARY KEY(sid ,ename,exam_date),
-FOREIGN KEY (ename,exam_date,tid ) REFERENCES exam (name,exam_date,tid)
+PRIMARY KEY(sid ,exam_name,exam_date),
+FOREIGN KEY (exam_name,exam_date,teacher_id ) REFERENCES exam (exam_name,exam_date,teacher_id)
 );
 
 CREATE TABLE  exam_questions(
-q_txt VARCHAR2(200) NOT NULL,
-q_number NUMBER(3) NOT NULL,
-ename VARCHAR2(30) NOT NULL,
+question_text VARCHAR2(200) NOT NULL,
+question_number NUMBER(3) NOT NULL,
+exam_name VARCHAR2(30) NOT NULL,
 exam_date DATE NOT NULL,
-tid NUMBER(5) NOT NULL,
-FOREIGN KEY (ename,exam_date ,tid) REFERENCES exam ( name,exam_date ,tid)
+teacher_id NUMBER(5) NOT NULL,
+FOREIGN KEY (exam_name,exam_date ,teacher_id) REFERENCES exam ( exam_name,exam_date ,teacher_id)
 );
 
 
 CREATE TABLE teacher_students(
 sid NUMBER(5) REFERENCES student(sid) NOT NULL,
 study_year NUMBER(4) NOT NULL,
-tid NUMBER(5) REFERENCES teacher(tid) NOT NULL,
+teacher_id NUMBER(5) REFERENCES teacher(teacher_id) NOT NULL,
 PRIMARY KEY ( sid , study_year)
 );
 
