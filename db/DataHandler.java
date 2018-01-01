@@ -62,10 +62,10 @@ public class DataHandler {
         final int numOfIdDigits = 5;
         switch (id / (int) Math.pow(10, numOfIdDigits - 1)) {
             case 1:
-                query = "SELECT student_password FROM student where student_id =? and student_password=?";
+                query = "SELECT null FROM student where student_id =? and student_password=?";
                 break;
             case 3:
-                query = "SELECT teacher_password FROM teacher where teacher_id =? and teacher_password=?";
+                query = "SELECT null FROM teacher where teacher_id =? and teacher_password=?";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid id");
