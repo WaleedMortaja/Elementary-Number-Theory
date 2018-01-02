@@ -31,13 +31,15 @@ PRIMARY KEY(student_id ,exam_name,exam_date),
 FOREIGN KEY (exam_name,exam_date,teacher_id ) REFERENCES exam (exam_name,exam_date,teacher_id)
 );
 
-CREATE TABLE  exam_questions(
+CREATE TABLE exam_questions(
 question_text VARCHAR2(200) NOT NULL,
 question_number NUMBER(3) NOT NULL,
 exam_name VARCHAR2(30) NOT NULL,
 exam_date DATE NOT NULL,
 teacher_id NUMBER(5) NOT NULL,
-FOREIGN KEY (exam_name,exam_date ,teacher_id) REFERENCES exam ( exam_name,exam_date ,teacher_id)
+PRIMARY KEY (question_number , exam_name,exam_date, teacher_id),
+FOREIGN KEY (exam_name,exam_date ,teacher_id) REFERENCES exam ( exam_name,exam_date ,teacher_id),
+CONSTRAINT exm_qstion_num_chk CHECK (question_number>0)
 );
 
 
@@ -74,5 +76,6 @@ insert into teacher_students values (10002, 2018,30002);
 
 insert into student_exams values (10001,'Quiz_1',date'2018-12-30',30001,87);
 
+insert into exam_questions values ('test Question', 1, 'Quiz_1', to_date('30-12-2018','dd-mm-yyyy'), 30001);
 
 commit;
