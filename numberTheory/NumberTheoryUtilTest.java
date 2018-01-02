@@ -3,6 +3,7 @@ package numberTheory;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -107,18 +108,17 @@ public class NumberTheoryUtilTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of remainder method, of class NumberTheoryUtil.
-     */
-    @Test
-    public void testRemainder() {
-        System.out.println("remainder");
-        long[] line = {1000, -143, -7, 1};
-        long[] expResult = {1, 1000, 143, -7};
-        long[] result = NumberTheoryUtil.remainder(line);
-        assertArrayEquals(expResult, result);
-    }
-
+//    /**
+//     * Test of remainder method, of class NumberTheoryUtil.
+//     */
+//    @Test
+//    public void testRemainder() {
+//        System.out.println("remainder");
+//        long[] line = {1000, -143, -7, 1};
+//        long[] expResult = {1, 1000, 143, -7};
+//        long[] result = NumberTheoryUtil.remainder(line);
+//        assertArrayEquals(expResult, result);
+//    }
     /**
      * Test of diophantineSolve method, of class NumberTheoryUtil.
      */
@@ -347,13 +347,13 @@ public class NumberTheoryUtilTest {
         System.out.println("gcdLines");
         long a = 172L;
         long b = 42L;
-        ArrayList expResult = new ArrayList();
+        ArrayList<long[]> expResult = new ArrayList<>();
         expResult.add(new long[]{172, 4, 42, 4});
         expResult.add(new long[]{42, 10, 4, 2});
         expResult.add(new long[]{4, 2, 2, 0});
-        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        ArrayList<long[]> result = NumberTheoryUtil.gcdLines(a, b);
         for (int i = 0; i < result.size(); i++) {
-            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+            assertArrayEquals(expResult.get(i), result.get(i));
         }
     }
 
@@ -365,12 +365,12 @@ public class NumberTheoryUtilTest {
         System.out.println("2 gcdLines");
         long a = -3L;
         long b = 2L;
-        ArrayList expResult = new ArrayList();
-        expResult.add(new long[]{-3, -2, 2, 1});
-        expResult.add(new long[]{2, 2, 1, 0});
-        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        ArrayList<long[]> expResult = new ArrayList<>();
+        expResult.add(new long[]{-3L, -2L, 2L, 1L});
+        expResult.add(new long[]{2L, 2L, 1L, 0L});
+        ArrayList<long[]> result = NumberTheoryUtil.gcdLines(a, b);
         for (int i = 0; i < result.size(); i++) {
-            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+            assertArrayEquals(expResult.get(i), result.get(i));
         }
     }
 
@@ -382,11 +382,11 @@ public class NumberTheoryUtilTest {
         System.out.println("3 gcdLines");
         long a = 10L;
         long b = 5L;
-        ArrayList expResult = new ArrayList();
-        expResult.add(new long[]{10, 2, 5, 0});
-        ArrayList result = NumberTheoryUtil.gcdLines(a, b);
+        ArrayList<long[]> expResult = new ArrayList<>();
+        expResult.add(new long[]{10L, 2L, 5L, 0L});
+        ArrayList<long[]> result = NumberTheoryUtil.gcdLines(a, b);
         for (int i = 0; i < result.size(); i++) {
-            assertArrayEquals((long[]) expResult.get(i), (long[]) result.get(i));
+            assertArrayEquals(expResult.get(i), result.get(i));
         }
     }
 
@@ -482,13 +482,13 @@ public class NumberTheoryUtilTest {
     @Test
     public void testChineseRemainderSolve() {
         System.out.println("chineseRemainderSolve");
-        ArrayList equations = new ArrayList<>();
+        ArrayList<Long[]> equations = new ArrayList<>();
         equations.add(new Long[]{2L, 3L});
         equations.add(new Long[]{3L, 5L});
         equations.add(new Long[]{2L, 7L});
-        long expResult = 23L;
-        long result = NumberTheoryUtil.chineseRemainderSolve(equations);
-        assertEquals(expResult, result);
+        long[] expResult = {23L, 105L};
+        long[] result = NumberTheoryUtil.chineseRemainderSolve(equations);
+        Assert.assertArrayEquals(expResult, result);
     }
 
     /**
