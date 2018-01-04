@@ -110,9 +110,9 @@ public class NumberTheoryApplication extends Application {
         /**
          * Those Fxml's is the τ_σ_𝜙 interface
          */
-        Parent GetPhiParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/τ_σ/GetPhi.fxml"));
-        Parent GetTauParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/τ_σ/GetTau.fxml"));
-        Parent GetSigmaParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/τ_σ/GetSigma.fxml"));
+        Parent GetPhiParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/tau_sigma_phi/GetPhi.fxml"));
+        Parent GetTauParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/tau_sigma_phi/GetTau.fxml"));
+        Parent GetSigmaParent = FXMLLoader.load(getClass().getResource("/Interfaces_and_Controllers/tau_sigma_phi/GetSigma.fxml"));
         GetPhiScene = new Scene(GetPhiParent, 480, 210);
         GetTauScene = new Scene(GetTauParent, 480, 210);
         GetSigmaScene = new Scene(GetSigmaParent, 470, 220);
