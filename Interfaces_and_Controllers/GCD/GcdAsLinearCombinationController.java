@@ -28,7 +28,7 @@ public class GcdAsLinearCombinationController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
@@ -43,30 +43,17 @@ public class GcdAsLinearCombinationController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("You entered an invalid number");
             alert.showAndWait();
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException | IllegalArgumentException npe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText(npe.getMessage());
-            alert.showAndWait();
-        } catch (IllegalArgumentException illex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(illex.getMessage());
-            alert.showAndWait();
-        } catch (Exception ex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(ex.getMessage());
             alert.showAndWait();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
 }
