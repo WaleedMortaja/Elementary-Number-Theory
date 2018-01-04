@@ -8,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import runningApplication.HelpingClass;
-import runningApplication.HelpingClass;
-import runningApplication.NumberTheoryApplication;
 import runningApplication.NumberTheoryApplication;
 
 public class IsRelativePrimeController implements Initializable {
@@ -23,7 +21,7 @@ public class IsRelativePrimeController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
@@ -59,7 +57,6 @@ public class IsRelativePrimeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
 }

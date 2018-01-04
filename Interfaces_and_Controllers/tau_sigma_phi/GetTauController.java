@@ -1,7 +1,10 @@
-package Interfaces_and_Controllers.τ_σ;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Interfaces_and_Controllers.tau_sigma_phi;
 
-import runningApplication.HelpingClass;
-import runningApplication.NumberTheoryApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,8 +12,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import runningApplication.HelpingClass;
+import runningApplication.NumberTheoryApplication;
 
-public class GetSigmaController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author HP
+ */
+public class GetTauController implements Initializable {
 
     @FXML
     private TextField Result;
@@ -19,13 +29,13 @@ public class GetSigmaController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
-    private void handlecomputesigma(ActionEvent event) {
+    private void handlecomputetau(ActionEvent event) {
         try {
-            Result.setText(numberTheory.NumberTheoryUtil.sigma(HelpingClass.input2Long(Input)) + "");
+            Result.setText(numberTheory.NumberTheoryUtil.tau(HelpingClass.input2Long(Input)) + "");
 
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -50,7 +60,6 @@ public class GetSigmaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
 }

@@ -1,4 +1,4 @@
-package Interfaces_and_Controllers.τ_σ;
+package Interfaces_and_Controllers.tau_sigma_phi;
 
 import runningApplication.HelpingClass;
 import runningApplication.NumberTheoryApplication;
@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class GetPhiController implements Initializable {
+public class GetSigmaController implements Initializable {
 
     @FXML
     private TextField Result;
@@ -19,13 +19,13 @@ public class GetPhiController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
-    private void handlecomputephi(ActionEvent event) {
+    private void handlecomputesigma(ActionEvent event) {
         try {
-            Result.setText(numberTheory.NumberTheoryUtil.phi(HelpingClass.input2Long(Input)) + "");
+            Result.setText(numberTheory.NumberTheoryUtil.sigma(HelpingClass.input2Long(Input)) + "");
 
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -46,12 +46,10 @@ public class GetPhiController implements Initializable {
             alert.setContentText(ex.getMessage());
             alert.showAndWait();
         }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }
 
 }

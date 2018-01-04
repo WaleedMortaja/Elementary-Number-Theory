@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Interfaces_and_Controllers.τ_σ;
+package Interfaces_and_Controllers.tau_sigma_phi;
 
+import runningApplication.HelpingClass;
+import runningApplication.NumberTheoryApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,17 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import runningApplication.HelpingClass;
-import runningApplication.HelpingClass;
-import runningApplication.NumberTheoryApplication;
-import runningApplication.NumberTheoryApplication;
 
-/**
- * FXML Controller class
- *
- * @author HP
- */
-public class GetTauController implements Initializable {
+public class GetPhiController implements Initializable {
 
     @FXML
     private TextField Result;
@@ -31,13 +19,13 @@ public class GetTauController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
-    private void handlecomputetau(ActionEvent event) {
+    private void handlecomputephi(ActionEvent event) {
         try {
-            Result.setText(numberTheory.NumberTheoryUtil.tau(HelpingClass.input2Long(Input)) + "");
+            Result.setText(numberTheory.NumberTheoryUtil.phi(HelpingClass.input2Long(Input)) + "");
 
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -58,11 +46,12 @@ public class GetTauController implements Initializable {
             alert.setContentText(ex.getMessage());
             alert.showAndWait();
         }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
 }

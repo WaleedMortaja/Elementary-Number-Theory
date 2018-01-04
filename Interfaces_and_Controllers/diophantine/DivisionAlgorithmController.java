@@ -33,7 +33,7 @@ public class DivisionAlgorithmController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
@@ -49,30 +49,17 @@ public class DivisionAlgorithmController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("You entered an invalid number");
             alert.showAndWait();
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException | IllegalArgumentException npe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText(npe.getMessage());
-            alert.showAndWait();
-        } catch (IllegalArgumentException iae) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(iae.getMessage());
-            alert.showAndWait();
-        } catch (Exception ex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(ex.getMessage());
             alert.showAndWait();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
 }

@@ -706,23 +706,23 @@ public class NumberTheoryUtil {
     }
 
     private static char caesar(char ch, int key) {
-        int base = 0;
+        int base;
         if ('A' <= ch && ch <= 'Z') {
             base = 'A';
         } else if ('a' <= ch && ch <= 'z') {
             base = 'a';
-            } else {
+        } else {
             return ch;
         } // Not a letter
         int offset = ch - base + key;
         final int LETTERS = 26; // Number of letters in the Roman alphabet
         if (offset > LETTERS) {
-            offset = offset - LETTERS;
+            offset -= LETTERS;
         } else if (offset < 0) {
-            offset = offset + LETTERS;
-            }
-        return (char) (base + offset);
+            offset += LETTERS;
         }
+        return (char) (base + offset);
+    }
 
     /**
      *
@@ -734,16 +734,16 @@ public class NumberTheoryUtil {
         String result = "";
         for (char ch : plain_Text.toCharArray()) {
             result += caesar(ch, DEFAULT_ENC_KEY);
-            }
-        return result;
         }
+        return result;
+    }
 
     public static String caesarDecrypt(String encrypted_Text) {
         int DEFAULT_DEC_KEY = -3;
         String result = "";
         for (char ch : encrypted_Text.toCharArray()) {
             result += caesar(ch, DEFAULT_DEC_KEY);
-    }
+        }
         return result;
     }
 

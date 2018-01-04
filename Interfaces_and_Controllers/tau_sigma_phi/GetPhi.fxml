@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="220.0" prefWidth="470.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.τ_σ.GetSigmaController">
+<AnchorPane id="AnchorPane" prefHeight="210.0" prefWidth="480.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.tau_sigma_phi.GetPhiController">
     <children>
         <Button fx:id="Backtomain" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#handlebacktomain" prefHeight="35.0" prefWidth="160.0" text="🢀 Back to Program">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
         </Button>
-        <Label alignment="CENTER" layoutX="183.0" layoutY="23.0" prefHeight="40.0" prefWidth="160.0" text="Compute Tau" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="183.0" layoutY="23.0" prefHeight="40.0" prefWidth="160.0" text="Compute Phi" textAlignment="CENTER">
             <font>
                 <Font size="18.0" />
             </font>
@@ -23,13 +23,13 @@
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Button layoutX="206.0" layoutY="156.0" mnemonicParsing="false" onAction="#handlecomputesigma" prefHeight="25.0" prefWidth="100.0" text="Compute" />
+        <Button layoutX="190.0" layoutY="157.0" mnemonicParsing="false" onAction="#handlecomputephi" prefHeight="25.0" prefWidth="100.0" text="Compute" />
         <Label layoutX="263.0" layoutY="111.0" text="is">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="20.0" layoutY="111.0" text="The Tau of :">
+        <Label layoutX="20.0" layoutY="111.0" text="The Phi of :">
             <font>
                 <Font size="14.0" />
             </font>

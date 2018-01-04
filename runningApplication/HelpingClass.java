@@ -8,6 +8,7 @@ package runningApplication;
 import java.util.ArrayList;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import static numberTheory.NumberTheoryUtil.strPow;
 
 /**
  *
@@ -17,7 +18,7 @@ public class HelpingClass {
 
     public static Long input2Long(TextField tf) {
 
-        return Long.parseLong(tf.getText().trim());
+        return strPow(tf.getText().trim());
     }
 
     public static long[] input2ArrayOfLongs(TextField tf) throws NumberFormatException {
@@ -26,7 +27,7 @@ public class HelpingClass {
         long[] result = new long[inputs.length];
         try {
             for (int i = 0; i < inputs.length; i++) {
-                result[i] = Long.parseLong(inputs[i]);
+                result[i] = strPow(inputs[i]);
             }
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("Invaild Number (" + tf.getText() + ")");
@@ -43,7 +44,7 @@ public class HelpingClass {
             result.add(new Long[inputs.length]);
             try {
                 for (int j = 0; j < inputs.length; j++) {
-                    result.get(i)[j] = Long.parseLong(inputs[j]);
+                    result.get(i)[j] = strPow(inputs[j]);
                 }
             } catch (NumberFormatException ex) {
                 throw new NumberFormatException("Invaild Number (" + inputs + ")");
