@@ -5,7 +5,7 @@
  */
 package Interfaces_and_Controllers.divisors;
 
-import runningApplication.HelpingClass;
+import helpingClasses.HelpingClass;
 import runningApplication.NumberTheoryApplication;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class PrimeDivisorsController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML

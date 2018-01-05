@@ -1,4 +1,4 @@
-package Interfaces_and_Controllers.modulo;
+package Interfaces_and_Controllers.tau_sigma_phi;
 
 import helpingClasses.HelpingClass;
 import runningApplication.NumberTheoryApplication;
@@ -10,16 +10,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class IsCongurentController implements Initializable {
+public class GetSigmaController implements Initializable {
 
     @FXML
-    private TextField Input1;
-    @FXML
-    private TextField Input2;
-    @FXML
-    private TextField Input3;
-    @FXML
     private TextField Result;
+    @FXML
+    private TextField Input;
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
@@ -27,9 +23,10 @@ public class IsCongurentController implements Initializable {
     }
 
     @FXML
-    private void handleiscongurent(ActionEvent event) {
+    private void handlecomputesigma(ActionEvent event) {
         try {
-            Result.setText(numberTheory.NumberTheoryUtil.isCongurent(HelpingClass.input2Long(Input1), HelpingClass.input2Long(Input2), HelpingClass.input2Long(Input3)) + "");
+            Result.setText(numberTheory.NumberTheoryUtil.sigma(HelpingClass.input2Long(Input)) + "");
+
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -41,12 +38,6 @@ public class IsCongurentController implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText(npe.getMessage());
-            alert.showAndWait();
-        } catch (IllegalArgumentException illex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(illex.getMessage());
             alert.showAndWait();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

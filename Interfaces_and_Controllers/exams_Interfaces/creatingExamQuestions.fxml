@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="390.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.exams_Interfaces.CreatingExamQuestionsController">
+    <children>
+        <TitledPane fx:id="tp_Chinese" alignment="CENTER" expanded="false" layoutX="20.0" layoutY="263.0" prefHeight="50.0" prefWidth="150.0" text="Chinese">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <ToggleButton fx:id="SC_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_SC" prefHeight="25.0" prefWidth="149.0" text="Solve Chinese" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_τ_σ" alignment="CENTER" expanded="false" layoutX="195.0" layoutY="263.0" prefHeight="100.0" prefWidth="150.0" text="τ &amp; σ &amp; 𝜙">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <ToggleButton fx:id="phi_TB" layoutY="50.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_phi" prefHeight="25.0" prefWidth="149.0" text="get 𝜙 (phi)" />
+                        <ToggleButton fx:id="tau_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_tau" prefHeight="25.0" prefWidth="149.0" text="get τ (tau)" />
+                        <ToggleButton fx:id="sigma_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_sigma" prefHeight="25.0" prefWidth="149.0" text="get σ (sigma)" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane alignment="CENTER" expanded="false" layoutX="359.0" layoutY="163.0" prefHeight="100.0" prefWidth="160.0" text="Primitive Roots">
+            <content>
+                <Pane prefHeight="0.0" prefWidth="0.0">
+                    <children>
+                        <ToggleButton fx:id="NPR_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_NPR" prefHeight="25.0" prefWidth="159.0" text="Number of primitive roots" />
+                        <ToggleButton fx:id="FPR_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_FPR" prefHeight="25.0" prefWidth="159.0" text="Find Primitive roots" />
+                        <ToggleButton fx:id="CO_TB" layoutY="50.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_CO" prefHeight="25.0" prefWidth="159.0" text="Compute the order" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_Mod" alignment="CENTER" expanded="false" layoutX="195.0" layoutY="163.0" prefHeight="100.0" prefWidth="150.0" text="Modulo">
+            <content>
+                <Pane prefHeight="150.0" prefWidth="150.0">
+                    <children>
+                        <ToggleButton fx:id="Mod_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_Mod" prefHeight="25.0" prefWidth="149.0" text="Modulo" />
+                        <ToggleButton fx:id="IC_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_IC" prefHeight="25.0" prefWidth="149.0" text="Is Congurent ?" />
+                        <ToggleButton fx:id="SLC_TB" layoutY="50.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_SLC" prefHeight="25.0" prefWidth="149.0" text="Solve linear Congurent" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_Encrypt" alignment="CENTER" expanded="false" layoutX="364.0" layoutY="263.0" prefHeight="50.0" prefWidth="150.0" text="Encryption">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <ToggleButton fx:id="CE_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_CE" prefHeight="25.0" prefWidth="149.0" text="Caesar encryption" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_GCD" alignment="CENTER" cache="true" expanded="false" layoutX="189.0" layoutY="63.0" prefHeight="100.0" prefWidth="160.0" text="GCD">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="160.0">
+                    <children>
+                        <ToggleButton fx:id="GCDAL_TB" layoutY="50.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_GCDAL" prefHeight="25.0" prefWidth="159.0" text="gcd as linear combination" />
+                        <ToggleButton fx:id="LCM_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_LCM" prefHeight="25.0" prefWidth="159.0" text="lcm" />
+                        <ToggleButton fx:id="GCD_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_GCD" prefHeight="25.0" prefWidth="159.0" text="gcd" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_Primes" alignment="CENTER" expanded="false" layoutX="364.0" layoutY="63.0" prefHeight="75.0" prefWidth="150.0" text="Primes">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <ToggleButton fx:id="IP_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_IP" prefHeight="25.0" prefWidth="149.0" text="Is prime ?" />
+                        <ToggleButton fx:id="IRP_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_IRP" prefHeight="25.0" prefWidth="149.0" text="Is Relative Prime ?" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_Dioph" alignment="CENTER" contentDisplay="CENTER" expanded="false" layoutX="20.0" layoutY="163.0" prefHeight="75.0" prefWidth="150.0" text="Diophantine">
+            <content>
+                <Pane prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <ToggleButton fx:id="SD_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_SD" prefHeight="25.0" prefWidth="149.0" text="Solve Diophantine" />
+                        <ToggleButton fx:id="DA_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_DA" prefHeight="25.0" prefWidth="149.0" text="Division Algorithm" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <TitledPane fx:id="tp_Divisors" alignment="CENTER" contentDisplay="CENTER" expanded="false" layoutX="20.0" layoutY="63.0" prefHeight="100.0" prefWidth="150.0" text="Divisors">
+            <content>
+                <Pane prefHeight="100.0" prefWidth="148.0">
+                    <children>
+                        <ToggleButton fx:id="AD_TB" mnemonicParsing="false" onAction="#pressed_toggle_btn_AD" prefHeight="25.0" prefWidth="149.0" text="All Divisors" />
+                        <ToggleButton fx:id="PD_TB" layoutY="25.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_PD" prefHeight="25.0" prefWidth="149.0" text="Prime Divisors" />
+                        <ToggleButton fx:id="PF_TB" layoutY="50.0" mnemonicParsing="false" onAction="#pressed_toggle_btn_PF" prefHeight="25.0" prefWidth="149.0" text="Prime Facorization" />
+                    </children>
+                </Pane>
+            </content>
+        </TitledPane>
+        <Label layoutX="20.0" layoutY="17.0" prefHeight="29.0" prefWidth="150.0" text="Number of Questions left :" />
+        <Label fx:id="lbl_number_of_questions" layoutX="170.0" layoutY="17.0" prefHeight="30.0" prefWidth="40.0" />
+        <Button layoutX="413.0" layoutY="350.0" mnemonicParsing="false" onAction="#finish_and_back" prefHeight="25.0" prefWidth="100.0" text="finish" />
+        <Button layoutX="20.0" layoutY="350.0" mnemonicParsing="false" onAction="#back_to_create_exam" prefHeight="25.0" prefWidth="100.0" text="back" />
+        <MenuButton fx:id="user_name_menu" layoutX="426.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#to_teacher_profile" text="to my page" />
+                <MenuItem mnemonicParsing="false" onAction="#sign_Out" text="sign out" />
+            </items>
+        </MenuButton>
+    </children>
+</AnchorPane>

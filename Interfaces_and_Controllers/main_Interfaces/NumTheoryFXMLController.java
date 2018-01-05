@@ -42,112 +42,117 @@ public class NumTheoryFXMLController implements Initializable {
 
     @FXML
     private void handleAboutAction(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.aboutScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getAboutScene());
+    }
+
+    @FXML
+    private void go_to_login_page(ActionEvent event) {
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getLoginPageScene());
     }
 
     @FXML
     private void openAllDivisors(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.allDivisorsScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getAllDivisorsScene());
     }
 
     @FXML
     private void openPrimeDivisors(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.primeDivisorsScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getPrimeDivisorsScene());
     }
 
     @FXML
     private void openPrimeFactorizations(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.primeFactorizationScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getPrimeFactorizationScene());
     }
 
     @FXML
     private void openGcd(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.gcdScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getGcdScene());
     }
 
     @FXML
     private void openLcm(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.lcmScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getLcmScene());
     }
 
     @FXML
     private void openGcdAsLinearCombination(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.GcdAsLinearCombinationScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getGcdAsLinearCombinationScene());
     }
 
     @FXML
     private void openSolveDiophantine(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.SolveDiophantineScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getSolveDiophantineScene());
     }
 
     @FXML
     private void openDivisionAlgorithm(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.DivisionAlgorithmScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getDivisionAlgorithmScene());
     }
 
     @FXML
     private void openIsPrime(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.IsPrimeScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getIsPrimeScene());
     }
 
     @FXML
     private void openIsRelativePrime(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.IsRelativePrimeScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getIsRelativePrimeScene());
     }
 
     @FXML
     private void openIsCongurent(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.IsCongurentScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getIsCongurentScene());
     }
 
     @FXML
     private void openSolveLinearCongurent(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.SolveLinearCongurentScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getSolveLinearCongurentScene());
     }
 
     @FXML
     private void openModulo(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.ModuloScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getModuloScene());
     }
 
     @FXML
     private void openSolveChinese(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.SolveChineseScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getSolveChineseScene());
     }
 
     @FXML
     private void openGetPhi(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.GetPhiScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getPhiScene());
     }
 
     @FXML
     private void openGetTau(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.GetTauScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getTauScene());
     }
 
     @FXML
     private void openGetSigma(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.GetSigmaScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getSigmaScene());
     }
 
     @FXML
     private void openNumOfPrimitiveRoots(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.numOfPrimitiveRootsScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getNumOfPrimitiveRootsScene());
     }
 
     @FXML
     private void openPrimitiveroots(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.primitiveRootsScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getPrimitiveRootsScene());
     }
 
     @FXML
     private void Computetheorder(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.orderScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getOrderScene());
     }
 
     @FXML
     private void openCaesar(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.CaesarScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getCaesarScene());
     }
 
     @FXML

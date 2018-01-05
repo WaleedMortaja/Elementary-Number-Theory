@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import runningApplication.HelpingClass;
-import runningApplication.HelpingClass;
-import runningApplication.NumberTheoryApplication;
+import helpingClasses.HelpingClass;
 import runningApplication.NumberTheoryApplication;
 
 public class IsPrimeController implements Initializable {
@@ -21,7 +19,7 @@ public class IsPrimeController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML

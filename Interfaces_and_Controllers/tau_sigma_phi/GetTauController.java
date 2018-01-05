@@ -1,7 +1,10 @@
-package Interfaces_and_Controllers.modulo;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Interfaces_and_Controllers.tau_sigma_phi;
 
-import helpingClasses.HelpingClass;
-import runningApplication.NumberTheoryApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,17 +12,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import helpingClasses.HelpingClass;
+import runningApplication.NumberTheoryApplication;
 
-public class IsCongurentController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author HP
+ */
+public class GetTauController implements Initializable {
 
-    @FXML
-    private TextField Input1;
-    @FXML
-    private TextField Input2;
-    @FXML
-    private TextField Input3;
     @FXML
     private TextField Result;
+    @FXML
+    private TextField Input;
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
@@ -27,9 +33,10 @@ public class IsCongurentController implements Initializable {
     }
 
     @FXML
-    private void handleiscongurent(ActionEvent event) {
+    private void handlecomputetau(ActionEvent event) {
         try {
-            Result.setText(numberTheory.NumberTheoryUtil.isCongurent(HelpingClass.input2Long(Input1), HelpingClass.input2Long(Input2), HelpingClass.input2Long(Input3)) + "");
+            Result.setText(numberTheory.NumberTheoryUtil.tau(HelpingClass.input2Long(Input)) + "");
+
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -41,12 +48,6 @@ public class IsCongurentController implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText(npe.getMessage());
-            alert.showAndWait();
-        } catch (IllegalArgumentException illex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(illex.getMessage());
             alert.showAndWait();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

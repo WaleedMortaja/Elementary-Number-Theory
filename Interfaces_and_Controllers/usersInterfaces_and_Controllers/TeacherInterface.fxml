@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onMouseEntered="#user_name_named" prefHeight="370.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.usersInterfaces_and_Controllers.TeacherInterfaceController">
+    <children>
+        <MenuButton fx:id="user_name_menu" layoutX="386.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0">
+            <items>
+                <MenuItem disable="true" mnemonicParsing="false" text="to my page" />
+                <MenuItem mnemonicParsing="false" onAction="#sign_Out" text="sign out" />
+            </items>
+        </MenuButton>
+        <Label fx:id="Hello_Mr_username" layoutX="16.0" layoutY="14.0" prefHeight="40.0" prefWidth="230.0" text="Hello Mr. ">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TableView fx:id="exams_Table" layoutX="131.0" layoutY="53.0" prefHeight="300.0" prefWidth="350.0">
+            <columns>
+                <TableColumn prefWidth="125.0" text="Exam name" />
+                <TableColumn prefWidth="83.0" text="Average" />
+                <TableColumn prefWidth="151.0" text="Date" />
+            </columns>
+        </TableView>
+        <Button layoutX="16.0" layoutY="149.0" mnemonicParsing="false" onAction="#add_Exam" prefHeight="25.0" prefWidth="100.0" text="Add new exam" />
+        <Button layoutX="16.0" layoutY="196.0" mnemonicParsing="false" onAction="#remove_Exam" prefHeight="25.0" prefWidth="100.0" text="Remove exam" />
+        <Button layoutX="457.0" layoutY="53.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="🔄">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

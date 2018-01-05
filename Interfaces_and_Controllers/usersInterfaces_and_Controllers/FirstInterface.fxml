@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="160.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.usersInterfaces_and_Controllers.FirstInterfaceController">
+    <children>
+        <Label fx:id="topic1" layoutX="43.0" layoutY="14.0" prefHeight="39.0" prefWidth="207.0" text="Number Theory Program" textAlignment="CENTER" textFill="#00308a" wrapText="true">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="154.0" layoutY="73.0" mnemonicParsing="false" onAction="#toLoginPage" prefHeight="40.0" prefWidth="130.0" text="login page" />
+        <Button layoutX="16.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleGotomain" prefHeight="40.0" prefWidth="130.0" text="program methods" />
+        <CheckBox layoutX="16.0" layoutY="127.0" mnemonicParsing="false" onAction="#abc" text="Remeber this choice" />
+    </children>
+</AnchorPane>

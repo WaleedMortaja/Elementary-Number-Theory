@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="220.0" prefWidth="520.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces_and_Controllers.primitiveRoots.NumOfPrimitiveRootsController">
+<AnchorPane id="AnchorPane" prefHeight="220.0" prefWidth="520.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Interfaces_and_Controllers.primitiveRoots.NumOfPrimitiveRootsController">
     <children>
         <Button fx:id="Backtomain" layoutX="21.0" layoutY="28.0" mnemonicParsing="false" onAction="#handlebacktomain" prefHeight="35.0" prefWidth="147.0" text="🢀 Back to Program">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
         </Button>
-        <Label alignment="CENTER" layoutX="168.0" layoutY="14.0" prefHeight="40.0" prefWidth="277.0" text="Compute primitive roots number" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="171.0" layoutY="26.0" prefHeight="40.0" prefWidth="277.0" text="Compute primitive roots number" textAlignment="CENTER">
             <font>
                 <Font size="18.0" />
             </font>

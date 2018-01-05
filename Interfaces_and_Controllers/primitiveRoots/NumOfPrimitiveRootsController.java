@@ -5,7 +5,7 @@
  */
 package Interfaces_and_Controllers.primitiveRoots;
 
-import runningApplication.HelpingClass;
+import helpingClasses.HelpingClass;
 import runningApplication.NumberTheoryApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +29,7 @@ public class NumOfPrimitiveRootsController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML

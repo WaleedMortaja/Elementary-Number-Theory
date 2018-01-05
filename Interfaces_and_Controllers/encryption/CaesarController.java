@@ -6,13 +6,11 @@
 package Interfaces_and_Controllers.encryption;
 
 import runningApplication.NumberTheoryApplication;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 
 public class CaesarController implements Initializable {
@@ -24,20 +22,20 @@ public class CaesarController implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
     private void Encrypt_text(ActionEvent event) {
 
-        EncryptedText.setText(new String(numberTheory.NumberTheoryUtil.caesarEncypt(plainText.getText())));
+        EncryptedText.setText(new String(numberTheory.NumberTheoryUtil.CaesarEncypt(plainText.getText())));
 
     }
 
     @FXML
     private void Decrypt_text(ActionEvent event) {
 
-        plainText.setText(new String(numberTheory.NumberTheoryUtil.caesarDecrypt(EncryptedText.getText())));
+        plainText.setText(new String(numberTheory.NumberTheoryUtil.CaesarDecrypt(EncryptedText.getText())));
 
     }
 

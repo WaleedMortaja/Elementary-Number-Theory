@@ -59,7 +59,7 @@ public class DataHandler {
 
     /**
      * try to login to the database as a user (teacher or student)
-     * 
+     *
      * @param id the id of the user
      * @param password the passord of the user
      * @return true if the password is correct for the given id, false otherise.
@@ -153,7 +153,7 @@ public class DataHandler {
 
     /**
      * Disconnect from the database
-     * 
+     *
      * @throws SQLException if a database access error occurs.
      */
     public final void closeDBConnection() throws SQLException {

@@ -13,9 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import runningApplication.HelpingClass;
-import runningApplication.HelpingClass;
-import runningApplication.NumberTheoryApplication;
+import helpingClasses.HelpingClass;
 import runningApplication.NumberTheoryApplication;
 
 /**
@@ -32,7 +30,7 @@ public class SolveChinese implements Initializable {
 
     @FXML
     private void handlebacktomain(ActionEvent event) {
-        NumberTheoryApplication.stage.setScene(NumberTheoryApplication.mainScene);
+        NumberTheoryApplication.getStage().setScene(NumberTheoryApplication.getMainScene());
     }
 
     @FXML
