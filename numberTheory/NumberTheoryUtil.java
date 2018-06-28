@@ -43,7 +43,7 @@ public class NumberTheoryUtil {
      */
     public static long[] divisionAlgorithm(long a, long b) throws IllegalArgumentException {
         if (a == 0 || b == 0) {
-            throw new IllegalArgumentException("There is no unique represtaion for zero(s)");
+            throw new IllegalArgumentException("There is no unique representation for zero(s)");
         }
         if (a == b) {
             return new long[]{a, 1, b, 0};
