@@ -12,7 +12,7 @@
 
 <hr>
 
-<h2>Program contants</h2>
+<h2>Program contents</h2>
 
 <table>
   <tr><th>Divisors</th> <th>GCD</th> <th>Prime</th> <th>Diophantine</th> <th>Modulo</th> <th>Encryptions</th> <th>Chinese</th> <th>τ_σ_𝜙</th> <th>Primitive</th> </tr>
@@ -31,6 +31,6 @@
 
 <table>
   <tr><th>Author</th><th>Email</th></tr>
-  <tr><td>Waleed Mortaja (Waleed)</td><td><a href="mailto:waleed.mortaja@gmail.com">waleed.mortaja@gmail.com</a></td></tr>
+  <tr><td>Waleed Mortaja (Waleed)</td><td><a href="mailto:waleedmortaja@gmail.com">waleedmortaja@gmail.com</a></td></tr>
   <tr><td>Mahmoud Khalil (khalil2535)</td><td><a href="mailto:kkhalil2535@gmail.com">kkhalil2535@gmail.com</a></td></tr>
 </table>
