@@ -44,7 +44,7 @@ public class AllDivisorsController implements Initializable {
             Result.setText("");
             divisors.forEach((divisor) -> {
                 Result.setText(Result.getText() + divisor + "\n");
-                numberofd.setText("Number of divisors is : " + numberTheory.NumberTheoryUtil.divisors(HelpingClass.input2Long(Input)).size());
+                numberofd.setText("Number of divisors is : " + divisors.size());
             });
         } catch (NumberFormatException nfe) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
