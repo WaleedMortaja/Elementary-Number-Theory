@@ -38,19 +38,7 @@ public class GcdController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("You entered an invalid number");
             alert.showAndWait();
-        } catch (NullPointerException npe) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(npe.getMessage());
-            alert.showAndWait();
-        } catch (IllegalArgumentException illex) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText(illex.getMessage());
-            alert.showAndWait();
-        } catch (Exception ex) {
+        }  catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText(null);
