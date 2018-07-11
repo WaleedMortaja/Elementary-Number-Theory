@@ -68,7 +68,7 @@ public class NumberTheoryUtil {
      * @param a The first number.
      * @param b The second number.
      * @return the gcd of the two numbers
-     * @throws IllegalArgumentException when both a & b equals zero
+     * @throws IllegalArgumentException when both a &amp; b equals zero
      */
     @SuppressWarnings("AssignmentToMethodParameter")
     public static long gcd(long a, long b) throws IllegalArgumentException {
