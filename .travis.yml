@@ -1,4 +1,6 @@
-sudo apt-get install openjfx
+before_install:
+  - sudo apt-get install openjfx
+  
 language: java
 jdk:
   - oraclejdk8
